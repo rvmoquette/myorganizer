@@ -78,6 +78,16 @@ class Hook_user
         $mf_droits_defaut['api_modifier__user_Admin'] = false;
         // Mise à jour des droits
         // ici le code
+        if (is_admin()) {
+            $mf_droits_defaut['api_modifier__user_Email'] = true; // an admin cas update an email
+            if (get_user_courant(MF_USER__ID) != $Code_user) {
+                $mf_droits_defaut['api_modifier__user_Admin'] = true; // an admin can change other account but not himself
+            }
+        }
+        if (get_user_courant(MF_USER__ID) == $Code_user) { // an user can change his password
+            $mf_droits_defaut['api_modifier__user_Password'] = true;
+            $mf_droits_defaut['user__MODIFIER_PWD'] = true;
+        }
     }
 
     public static function autorisation_modification(int $Code_user, string $user_Login__new, string $user_Password__new, string $user_Email__new, bool $user_Admin__new)
@@ -116,6 +126,9 @@ class Hook_user
         $mf_droits_defaut['user__SUPPRIMER'] = false;
         // Mise à jour des droits
         // Ici le code
+        if (is_admin() && get_user_courant(MF_USER__ID) != $Code_user || !is_admin() && get_user_courant(MF_USER__ID) == $Code_user) {
+            $mf_droits_defaut['user__SUPPRIMER'] = true;
+        }
         if ($Code_user != 0 && $mf_droits_defaut['user__SUPPRIMER']) {
             $table_task = new task();
             $mf_droits_defaut['user__SUPPRIMER'] = $table_task->mfi_compter(['Code_user' => $Code_user]) == 0;
