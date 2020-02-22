@@ -5,6 +5,7 @@ CREATE TABLE user (Code_user int AUTO_INCREMENT NOT NULL,
 user_Login VARCHAR,
 user_Password VARCHAR,
 user_Email VARCHAR,
+user_Admin BOOL,
 PRIMARY KEY (Code_user) ) ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS task ;
