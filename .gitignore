@@ -14,3 +14,6 @@ systeme/myorganizer/tables/monframework/mf_connexion.sessions/*
 
 #jetbrains
 .idea/*
+
+#config
+systeme/myorganizer/config_localhost.php
