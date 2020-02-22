@@ -42,13 +42,15 @@
     if ($mf_action == "ajouter_task") {
 
         $form = new Formulaire('', $mess);
+        /* start */
         $form->ajouter_input("task_Name", ( isset($_POST['task_Name']) ? $_POST['task_Name'] : $mf_initialisation['task_Name'] ), true);
-        $form->ajouter_input("task_Date_creation", ( isset($_POST['task_Date_creation']) ? $_POST['task_Date_creation'] : $mf_initialisation['task_Date_creation'] ), true);
+//        $form->ajouter_input("task_Date_creation", ( isset($_POST['task_Date_creation']) ? $_POST['task_Date_creation'] : $mf_initialisation['task_Date_creation'] ), true);
         $form->ajouter_textarea("task_Description", ( isset($_POST['task_Description']) ? $_POST['task_Description'] : $mf_initialisation['task_Description'] ), true);
-        $form->ajouter_select(lister_cles($lang_standard['task_Workflow_']), "task_Workflow", ( isset($_POST['task_Workflow']) ? $_POST['task_Workflow'] : $mf_initialisation['task_Workflow'] ), true);
-        if (! isset($est_charge['user'])) {
-            $form->ajouter_select(lister_cles($lang_standard['Code_user_']), "Code_user", (isset($_POST['Code_user']) ? (int) $_POST['Code_user'] : 0), true);
-        }
+//        $form->ajouter_select(lister_cles($lang_standard['task_Workflow_']), "task_Workflow", ( isset($_POST['task_Workflow']) ? $_POST['task_Workflow'] : $mf_initialisation['task_Workflow'] ), true);
+//        if (! isset($est_charge['user'])) {
+//            $form->ajouter_select(lister_cles($lang_standard['Code_user_']), "Code_user", (isset($_POST['Code_user']) ? (int) $_POST['Code_user'] : 0), true);
+//        }
+        /* end */
 
         $code_html .= recuperer_gabarit('task/form_add_task.html', ['{form}' => $form->generer_code(), '{title}' => get_nom_colonne('form_add_task')], false, true);
 
