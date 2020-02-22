@@ -52,6 +52,11 @@ class Hook_a_task_label
         $mf_droits_defaut['api_modifier__a_task_label_Link'] = false;
         // Mise à jour des droits
         // ici le code
+        $db = new DB();
+        $task = $db -> task() -> mf_get($Code_task);
+        if ($task[MF_TASK_CODE_USER] == get_user_courant(MF_USER__ID) || is_admin()) {
+            $mf_droits_defaut['api_modifier__a_task_label_Link'] = true;
+        }
     }
 
     public static function autorisation_modification(int $Code_task, int $Code_label, bool $a_task_label_Link__new)
