@@ -2,7 +2,7 @@
 
 $lang_standard['a_user_task'] = 'a_user_task';
 
-$lang_standard['a_user_task_Link'] = 'a_user_task_Link';
+$lang_standard['a_user_task_Link'] = ' ';
 $lang_standard['a_user_task_Link_'] = [1 => "Oui", 0 => "Non"];
 
 $lang_standard['bouton_ajouter_a_user_task'] = 'Ajouter';

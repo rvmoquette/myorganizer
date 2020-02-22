@@ -52,6 +52,13 @@ class Hook_a_user_task
         $mf_droits_defaut['api_modifier__a_user_task_Link'] = false;
         // Mise à jour des droits
         // ici le code
+        $db = new DB();
+        $task = $db -> task() -> mf_get($Code_task);
+        if ($task[MF_TASK_CODE_USER] == get_user_courant(MF_USER__ID) || is_admin()) {
+            if ($task[MF_TASK_WORKFLOW] == TASK_WORKFLOW_CREE || $task[MF_TASK_WORKFLOW] == TASK_WORKFLOW_EN_COURS) {
+                $mf_droits_defaut['api_modifier__a_user_task_Link'] = true;
+            }
+        }
     }
 
     public static function autorisation_modification(int $Code_user, int $Code_task, bool $a_user_task_Link__new)
