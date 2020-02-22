@@ -16,6 +16,12 @@ class Hook_task
     public static function pre_controller(string &$task_Name, string &$task_Date_creation, string &$task_Description, ?int &$task_Workflow, int &$Code_user, ?int $Code_task = null)
     {
         // ici le code
+        // No one can add a task for someone else.
+        if ($Code_task == 0) {
+            $Code_user = get_user_courant(MF_USER__ID);
+            $task_Workflow = TASK_WORKFLOW_CREE;
+            $task_Date_creation = get_now();
+        }
     }
 
     public static function hook_actualiser_les_droits_ajouter(?int $Code_user = null)
