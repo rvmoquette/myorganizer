@@ -33,6 +33,10 @@ class Hook_user
         $mf_droits_defaut['user__CREER'] = false;
         // Mise à jour des droits
         // ici le code
+        $db = new DB();
+        if (is_admin() || $db -> user() -> mf_compter() == 0) {
+            $mf_droits_defaut['user__AJOUTER'] = true;
+        }
     }
 
     public static function autorisation_ajout(string $user_Login, string $user_Password, string $user_Email, bool $user_Admin)
