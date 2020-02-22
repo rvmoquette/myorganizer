@@ -1,24 +1,24 @@
 <?php declare(strict_types=1);
 
-$lang_standard['Code_label'] = 'label';
+$lang_standard['Code_label'] = 'Classement';
 
-$lang_standard['label_Name'] = 'label_Name';
+$lang_standard['label_Name'] = 'Nom';
 
-$lang_standard['bouton_ajouter_label'] = 'Ajouter';
-$lang_standard['bouton_creer_label'] = 'Creer';
+$lang_standard['bouton_ajouter_label'] = 'Classement';
+$lang_standard['bouton_creer_label'] = 'Classement';
 $lang_standard['bouton_modifier_label'] = 'Modifier';
 $lang_standard['bouton_supprimer_label'] = 'Supprimer';
 $lang_standard['bouton_modifier_label_Name'] = 'Modifier';
 
-$lang_standard['form_add_label'] = 'form_add_label';
-$lang_standard['form_edit_label'] = 'form_edit_label';
-$lang_standard['form_delete_label'] = 'form_delete_label';
+$lang_standard['form_add_label'] = 'Ajouter un cassement';
+$lang_standard['form_edit_label'] = 'Modifier le classement';
+$lang_standard['form_delete_label'] = 'Confirmer le classement';
 
 $mf_titre_ligne_table['label'] = '{label_Name}';
 
 $mf_tri_defaut_table['label'] = ['label_Name' => 'ASC'];
 
-$lang_standard['libelle_liste_label'] = 'libelle_liste_label';
+$lang_standard['libelle_liste_label'] = 'Classements';
 
 $mf_initialisation['label_Name'] = '';
 

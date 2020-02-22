@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-$lang_standard['Code_user'] = 'user';
+$lang_standard['Code_user'] = 'Utilisateur';
 
-$lang_standard['user_Login'] = 'user_Login';
-$lang_standard['user_Password'] = 'user_Password';
-$lang_standard['user_Email'] = 'user_Email';
+$lang_standard['user_Login'] = 'Identifiant';
+$lang_standard['user_Password'] = 'Mot de passe';
+$lang_standard['user_Email'] = 'Email';
 
 $lang_standard['bouton_ajouter_user'] = 'Ajouter';
-$lang_standard['bouton_creer_user'] = 'Creer';
+$lang_standard['bouton_creer_user'] = 'Créer';
 $lang_standard['bouton_modifier_user'] = 'Modifier';
 $lang_standard['bouton_supprimer_user'] = 'Supprimer';
 $lang_standard['bouton_modpwd_user'] = 'Modifier le mot de passe';
@@ -15,16 +15,16 @@ $lang_standard['bouton_modifier_user_Login'] = 'Modifier';
 $lang_standard['bouton_modifier_user_Password'] = 'Modifier';
 $lang_standard['bouton_modifier_user_Email'] = 'Modifier';
 
-$lang_standard['form_add_user'] = 'form_add_user';
-$lang_standard['form_edit_user'] = 'form_edit_user';
-$lang_standard['form_delete_user'] = 'form_delete_user';
+$lang_standard['form_add_user'] = 'Ajouter un nouvel utilisateur';
+$lang_standard['form_edit_user'] = 'Modifier l\'utilisateur';
+$lang_standard['form_delete_user'] = 'Confirmer la suppression';
 $lang_standard['formulaire_modpwd_user'] = 'Modifier le mot de passe';
 
 $mf_titre_ligne_table['user'] = '{user_Login}';
 
 $mf_tri_defaut_table['user'] = ['user_Login' => 'ASC'];
 
-$lang_standard['libelle_liste_user'] = 'libelle_liste_user';
+$lang_standard['libelle_liste_user'] = 'Utilisateurs';
 
 $mf_initialisation['user_Login'] = '';
 $mf_initialisation['user_Password'] = '';

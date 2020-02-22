@@ -6,7 +6,7 @@ $lang_standard['a_user_task_Link'] = 'a_user_task_Link';
 $lang_standard['a_user_task_Link_'] = [1 => "Oui", 0 => "Non"];
 
 $lang_standard['bouton_ajouter_a_user_task'] = 'Ajouter';
-$lang_standard['bouton_creer_a_user_task'] = 'Creer';
+$lang_standard['bouton_creer_a_user_task'] = 'Créer';
 $lang_standard['bouton_modifier_a_user_task'] = 'Modifier';
 $lang_standard['bouton_supprimer_a_user_task'] = 'Supprimer';
 $lang_standard['bouton_modifier_a_user_task_Link'] = 'Modifier';

@@ -6,7 +6,7 @@ $lang_standard['a_task_label_Link'] = 'a_task_label_Link';
 $lang_standard['a_task_label_Link_'] = [1 => "Oui", 0 => "Non"];
 
 $lang_standard['bouton_ajouter_a_task_label'] = 'Ajouter';
-$lang_standard['bouton_creer_a_task_label'] = 'Creer';
+$lang_standard['bouton_creer_a_task_label'] = 'Créer';
 $lang_standard['bouton_modifier_a_task_label'] = 'Modifier';
 $lang_standard['bouton_supprimer_a_task_label'] = 'Supprimer';
 $lang_standard['bouton_modifier_a_task_label_Link'] = 'Modifier';

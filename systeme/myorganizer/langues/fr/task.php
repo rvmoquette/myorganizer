@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 
-$lang_standard['Code_task'] = 'task';
+$lang_standard['Code_task'] = 'Tâches';
 
-$lang_standard['task_Name'] = 'task_Name';
-$lang_standard['task_Date_creation'] = 'task_Date_creation';
-$lang_standard['task_Description'] = 'task_Description';
-$lang_standard['task_Workflow'] = 'task_Workflow';
-$lang_standard['task_Workflow_'] = [1 => "Etat 1", 2 => "Etat 2", 3 => "Etat 3"];
+$lang_standard['task_Name'] = 'Nom';
+$lang_standard['task_Date_creation'] = 'Créée le';
+$lang_standard['task_Description'] = 'Description';
+$lang_standard['task_Workflow'] = 'Etat';
+$lang_standard['task_Workflow_'] = [1 => "Créé", 2 => "En cours", 3 => "Validé"];
 
-$lang_standard['bouton_ajouter_task'] = 'Ajouter';
-$lang_standard['bouton_creer_task'] = 'Creer';
+$lang_standard['bouton_ajouter_task'] = 'Tâches';
+$lang_standard['bouton_creer_task'] = 'Tâches';
 $lang_standard['bouton_modifier_task'] = 'Modifier';
 $lang_standard['bouton_supprimer_task'] = 'Supprimer';
 $lang_standard['bouton_modifier_task_Name'] = 'Modifier';
@@ -18,15 +18,15 @@ $lang_standard['bouton_modifier_task_Description'] = 'Modifier';
 $lang_standard['bouton_modifier_task_Workflow'] = 'Modifier';
 $lang_standard['bouton_modifier_task__Code_user'] = 'Modifier';
 
-$lang_standard['form_add_task'] = 'form_add_task';
-$lang_standard['form_edit_task'] = 'form_edit_task';
-$lang_standard['form_delete_task'] = 'form_delete_task';
+$lang_standard['form_add_task'] = 'Ajouter une nouvelle tâche';
+$lang_standard['form_edit_task'] = 'Modifier la tâche';
+$lang_standard['form_delete_task'] = 'Confirmer la suppression';
 
 $mf_titre_ligne_table['task'] = '{task_Name}';
 
 $mf_tri_defaut_table['task'] = ['task_Name' => 'ASC'];
 
-$lang_standard['libelle_liste_task'] = 'libelle_liste_task';
+$lang_standard['libelle_liste_task'] = 'Tâches';
 
 $mf_initialisation['task_Name'] = '';
 $mf_initialisation['task_Date_creation'] = '';

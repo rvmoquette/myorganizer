@@ -66,7 +66,7 @@ function mf_documentation_matrice_workflow(string $colonne)
 <div class="jumbotron jumbotron-fluid">
 <div class="container-fluid">
 <h1 class="display-4">Dictionnaire des données du projet myorganizer</h1>
-<p class="lead">Date : 22/02/2020 11:57:42</p>
+<p class="lead">Date : 22/02/2020 12:22:26</p>
 </div>
 </div>
 <div class="container-fluid">
@@ -77,10 +77,10 @@ function mf_documentation_matrice_workflow(string $colonne)
 <table class="table table-sm">
 <thead><tr><th>Description</th><th>Type de donnée</th><th>Par défaut</th><th>Nom de la colonne (BD)</th></tr></thead>
 <tbody>
-<tr scope="row" class="bg-primary" style="color: white;"><th style="width: 25%;">Identifiant : user</th><th style="width: 40%;">Entier naturel</th><th style="width: 10%;"></th><th style="width: 25%;"><small>Code_user</small></th></tr>
-<tr scope="row"><td>user_Login</td><td>Chaine jusqu'à 255 caractères</td><td>''</td><td><small>user_Login</small></td></tr>
-<tr scope="row"><td>user_Password</td><td>Chaine jusqu'à 255 caractères</td><td>''</td><td><small>user_Password</small></td></tr>
-<tr scope="row"><td>user_Email</td><td>Chaine jusqu'à 255 caractères</td><td>''</td><td><small>user_Email</small></td></tr>
+<tr scope="row" class="bg-primary" style="color: white;"><th style="width: 25%;">Identifiant : Utilisateur</th><th style="width: 40%;">Entier naturel</th><th style="width: 10%;"></th><th style="width: 25%;"><small>Code_user</small></th></tr>
+<tr scope="row"><td>Identifiant</td><td>Chaine jusqu'à 255 caractères</td><td>''</td><td><small>user_Login</small></td></tr>
+<tr scope="row"><td>Mot de passe</td><td>Chaine jusqu'à 255 caractères</td><td>''</td><td><small>user_Password</small></td></tr>
+<tr scope="row"><td>Email</td><td>Chaine jusqu'à 255 caractères</td><td>''</td><td><small>user_Email</small></td></tr>
 </tbody>
 </table>
 <hr>
@@ -98,11 +98,11 @@ function mf_documentation_matrice_workflow(string $colonne)
 <table class="table table-sm">
 <thead><tr><th>Description</th><th>Type de donnée</th><th>Par défaut</th><th>Nom de la colonne (BD)</th></tr></thead>
 <tbody>
-<tr scope="row" class="bg-primary" style="color: white;"><th style="width: 25%;">Identifiant : task</th><th style="width: 40%;">Entier naturel</th><th style="width: 10%;"></th><th style="width: 25%;"><small>Code_task</small></th></tr>
-<tr scope="row"><td>task_Name</td><td>Chaine jusqu'à 255 caractères</td><td>''</td><td><small>task_Name</small></td></tr>
-<tr scope="row"><td>task_Date_creation</td><td>Date (sans l'heure)</td><td>''</td><td><small>task_Date_creation</small></td></tr>
-<tr scope="row"><td>task_Description</td><td>Texte sur plusieurs lignes</td><td>''</td><td><small>task_Description</small></td></tr>
-<tr scope="row"><td>task_Workflow</td><td>Nombre entier<br><span style="font-size: 0.85em; font-style: italic;">[1 => "Etat 1", 2 => "Etat 2", 3 => "Etat 3"]</span></td><td>1</td><td><small>task_Workflow</small></td></tr>
+<tr scope="row" class="bg-primary" style="color: white;"><th style="width: 25%;">Identifiant : Tâches</th><th style="width: 40%;">Entier naturel</th><th style="width: 10%;"></th><th style="width: 25%;"><small>Code_task</small></th></tr>
+<tr scope="row"><td>Nom</td><td>Chaine jusqu'à 255 caractères</td><td>''</td><td><small>task_Name</small></td></tr>
+<tr scope="row"><td>Créée le</td><td>Date (sans l'heure)</td><td>''</td><td><small>task_Date_creation</small></td></tr>
+<tr scope="row"><td>Description</td><td>Texte sur plusieurs lignes</td><td>''</td><td><small>task_Description</small></td></tr>
+<tr scope="row"><td>Etat</td><td>Nombre entier<br><span style="font-size: 0.85em; font-style: italic;">[1 => "Créé", 2 => "En cours", 3 => "Validé"]</span></td><td>1</td><td><small>task_Workflow</small></td></tr>
 <tr scope="row" class="bg-warning" style="font-style: italic;"><td>Lien vers l'entité : USER</td><td>Référence</td><td></td><td><small>Code_user</small></td></tr>
 </tbody>
 </table>
@@ -122,8 +122,8 @@ function mf_documentation_matrice_workflow(string $colonne)
 <table class="table table-sm">
 <thead><tr><th>Description</th><th>Type de donnée</th><th>Par défaut</th><th>Nom de la colonne (BD)</th></tr></thead>
 <tbody>
-<tr scope="row" class="bg-primary" style="color: white;"><th style="width: 25%;">Identifiant : label</th><th style="width: 40%;">Entier naturel</th><th style="width: 10%;"></th><th style="width: 25%;"><small>Code_label</small></th></tr>
-<tr scope="row"><td>label_Name</td><td>Chaine jusqu'à 255 caractères</td><td>''</td><td><small>label_Name</small></td></tr>
+<tr scope="row" class="bg-primary" style="color: white;"><th style="width: 25%;">Identifiant : Classement</th><th style="width: 40%;">Entier naturel</th><th style="width: 10%;"></th><th style="width: 25%;"><small>Code_label</small></th></tr>
+<tr scope="row"><td>Nom</td><td>Chaine jusqu'à 255 caractères</td><td>''</td><td><small>label_Name</small></td></tr>
 </tbody>
 </table>
 <hr>
