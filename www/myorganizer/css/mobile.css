@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+#panneau_gauche { position: relative; width: inherit; margin: 5px 5px 0 5px; }
+#panneau_centre { position: relative; width: inherit; margin: 0 5px 10px 5px; }
+#panneau_droit { position: relative; width: inherit; margin: 0 5px 0 5px; }
+#menu_appli li { text-align: center; }
+#menu_appli li a { display: inline-block; }
+form.stdform { width: 100%; }
+
+#menu_appli { position:inherit; width: inherit; }
+
+body {
+    font-size: 1.5em;
+}

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<title>Documentation API</title>
+</head>
+<body style="background-color: #dddddd;">
+<div class="jumbotron jumbotron-fluid">
+<div class="container-fluid">
+<h1 class="display-4">Documentation de l'API du projet myorganizer</h1>
+<p class="lead">Date : 22/02/2020 11:57:42</p>
+</div>
+</div>
+<div class="container-fluid">
+<h2>Connexion à l'API</h2>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/mf_connexion</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "mf_login": "...", "mf_pwd": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": { "mf_token": "...", "id": "..." }, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<div class="row"><div class="offset-sm-3 col-sm-9"><div class="alert alert-info" role="alert">mf_token se place dans les URL pour les requêtes nécessitants une authentification (?mf_token=...)</div></div></div>
+<h3 class="text-center">Erreurs</h3>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°0 : </div><div class="col-sm-9"><div class="alert alert-success" role="alert"><strong> Erreur n°0 </strong> : Pas d'erreur </div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°2 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°2 </strong> : Echec d'authentification</div></div></div>
+<br>
+<h2>Modification d'un mot de passe</h2>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">PUT</span> <span class="requete">/mf_change_password/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "mf_current_pwd": "...", "mf_new_pwd": "...", "mf_conf_pwd": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": {}, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<h3 class="text-center">Erreurs</h3>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°0 : </div><div class="col-sm-9"><div class="alert alert-success" role="alert"><strong> Erreur n°0 </strong> : Pas d'erreur </div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°1 : </div><div class="col-sm-9"><div class="alert alert-danger" role="alert"><strong> Erreur n°1 </strong> : Authentification exigée ou refus d'accès</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°3 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°3 </strong> : Echec de modification de mot de passe</div></div></div>
+<br>
+<h2>Demande d'un nouveau mot de passe</h2>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/mf_new_password</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "mf_login": "...", "mf_email": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": {}, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<h3 class="text-center">Erreurs</h3>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°0 : </div><div class="col-sm-9"><div class="alert alert-success" role="alert"><strong> Erreur n°0 </strong> : Pas d'erreur </div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°4 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°4 </strong> : Echec de génération d'un lien par email</div></div></div>
+<h6 class="text-center">Erreur liée : Cet erreur est générée non pas depuis l'API mais depuis le formulaire d'enregistrement du nouveau mot de passe.</h6>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°7 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°7 </strong> : Echec de modification du mot de passe. Pour des questions de sécurité, il est nécessaire de reformuler votre demande depuis le formulaire de mot de passe oublié. Merci.</div></div></div>
+<br>
+<h2>Inscription</h2>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/mf_inscription</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "mf_login": "...", "mf_pwd": "...", "mf_pwd_2": "...", "mf_email": "...", "mf_email_2": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": {}, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<h3 class="text-center">Erreurs</h3>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°0 : </div><div class="col-sm-9"><div class="alert alert-success" role="alert"><strong> Erreur n°0 </strong> : Pas d'erreur </div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°5 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°5 </strong> : Les mots de passe ne correspondent pas</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°6 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°6 </strong> : Les e-mails ne correspondent pas</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Autres erreurs : </div><div class="col-sm-9"><div class="alert alert-warning" role="info"><strong> Autres erreurs </strong> : <a href="#f_user">POST /user</a></div></div></div>
+<br>
+<h2 id="top">Fonctions de l'API avec les droits ( all / user / none )</h2><div class="row"><div class="col-sm-3 text-sm-right"></div><div class="col-sm-9"><div class=""><table class="table table-striped table-dark table-sm"><thead><tr><th>Fonction</th><th>GET</th><th>POST</th><th>PUT</th><th>DELETE</th><th>OPTIONS</th></tr></thead><tbody><tr><td><a href="#f_user" style="color: white;">user</a></td><td>none</td><td>none</td><td>none</td><td>none</td><td>all</td></tr><tr><td><a href="#f_task" style="color: white;">task</a></td><td>none</td><td>none</td><td>none</td><td>none</td><td>all</td></tr><tr><td><a href="#f_label" style="color: white;">label</a></td><td>none</td><td>none</td><td>none</td><td>none</td><td>all</td></tr><tr><td><a href="#f_a_task_label" style="color: white;">a_task_label</a></td><td>none</td><td>none</td><td>none</td><td>none</td><td>all</td></tr><tr><td><a href="#f_a_user_task" style="color: white;">a_user_task</a></td><td>none</td><td>none</td><td>none</td><td>none</td><td>all</td></tr></tbody></table></div></div></div>
+<div class="row"><div class="col"><h2 id="f_user">user <a role="button" class="btn btn-outline-dark" href="user">URL</a></h2></div><div class="col text-right"><a href="#top" style="font-size: 2em; color: black; font-weight: bold;">^</a></div></div>
+<h3 class="text-center">GET</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°1 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/user</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°2 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/user/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": [ { "Code_user": "...", "user_Login": "...", "user_Email": "..." } ], "error": { "number": ..., "label": ... }, , "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">POST</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/user</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "user_Login": "...", "user_Password": "...", "user_Email": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": { "id": "...", "callback": ... }, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/user</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">[ { "user_Login": "...", "user_Password": "...", "user_Email": "..." } ]</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": {}, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">PUT</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">PUT</span> <span class="requete">/user/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "user_Login": "...", "user_Password": "...", "user_Email": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": { "callback": ... }, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">DELETE</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°1 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/user</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°2 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/user/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": {}, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">Erreurs</h3>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°0 : </div><div class="col-sm-9"><div class="alert alert-success" role="alert"><strong> Erreur n°0 </strong> : Pas d'erreur </div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°1 : </div><div class="col-sm-9"><div class="alert alert-danger" role="alert"><strong> Erreur n°1 </strong> : Authentification exigée ou refus d'accès</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°8 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°8 </strong> : Limite du nombre d'enregistrements atteinte</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°100 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°100 </strong> : REFUS_user__AJOUTER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°101 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°101 </strong> : REFUS_user__AJOUT_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°102 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°102 </strong> : ERR_user__AJOUTER__user_Login_DOUBLON</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°103 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°103 </strong> : ERR_user__AJOUTER__user_Email_DOUBLON</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°104 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°104 </strong> : ERR_user__AJOUTER__AJOUT_REFUSE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°105 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°105 </strong> : ERR_user__AJOUTER_3__ECHEC_AJOUT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°106 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°106 </strong> : ERR_user__MODIFIER__Code_user_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°107 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°107 </strong> : REFUS_user__MODIFIER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°108 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°108 </strong> : Tentative d'accès 'Code_user' non autorisé</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°109 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°109 </strong> : REFUS_user__MODIFICATION_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°110 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°110 </strong> : ERR_user__MODIFIER__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°111 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°111 </strong> : ERR_user__MODIFIER_3__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°112 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°112 </strong> : ERR_user__MODIFIER_4__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°113 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°113 </strong> : ERR_user__SUPPRIMER_2__Code_user_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°114 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°114 </strong> : REFUS_user__SUPPRIMER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°115 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°115 </strong> : REFUS_user__SUPPRESSION_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°116 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°116 </strong> : ERR_user__SUPPRIMER__REFUSEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°117 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°117 </strong> : ERR_user__SUPPRIMER_2__REFUSEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°118 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°118 </strong> : ERR_user__SUPPRIMER_3__REFUSEE</div></div></div>
+<div class="row"><div class="col"><h2 id="f_task">task <a role="button" class="btn btn-outline-dark" href="task">URL</a></h2></div><div class="col text-right"><a href="#top" style="font-size: 2em; color: black; font-weight: bold;">^</a></div></div>
+<h3 class="text-center">GET</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°1 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°2 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/task/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°3 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/user/ID/task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": [ { "Code_task": "...", "task_Name": "...", "task_Date_creation": "...", "task_Description": "...", "task_Workflow": "...", "Code_user": "..." } ], "error": { "number": ..., "label": ... }, , "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">POST</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "task_Name": "...", "task_Date_creation": "...", "task_Description": "...", "task_Workflow": "...", "Code_user": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": { "id": "...", "callback": ... }, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">[ { "task_Name": "...", "task_Date_creation": "...", "task_Description": "...", "task_Workflow": "...", "Code_user": "..." } ]</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": {}, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">PUT</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">PUT</span> <span class="requete">/task/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "task_Name": "...", "task_Date_creation": "...", "task_Description": "...", "task_Workflow": "...", "Code_user": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": { "callback": ... }, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">DELETE</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°1 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°2 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/task/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°3 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/user/ID/task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": {}, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">Erreurs</h3>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°0 : </div><div class="col-sm-9"><div class="alert alert-success" role="alert"><strong> Erreur n°0 </strong> : Pas d'erreur </div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°1 : </div><div class="col-sm-9"><div class="alert alert-danger" role="alert"><strong> Erreur n°1 </strong> : Authentification exigée ou refus d'accès</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°8 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°8 </strong> : Limite du nombre d'enregistrements atteinte</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°119 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°119 </strong> : REFUS_task__AJOUTER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°120 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°120 </strong> : ERR_task__AJOUTER__Code_user_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°121 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°121 </strong> : REFUS_task__AJOUT_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°122 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°122 </strong> : ERR_task__AJOUTER__task_Workflow_NON_VALIDE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°123 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°123 </strong> : ERR_task__AJOUTER__AJOUT_REFUSE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°124 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°124 </strong> : ERR_task__AJOUTER_3__ECHEC_AJOUT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°125 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°125 </strong> : ERR_task__MODIFIER__Code_task_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°126 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°126 </strong> : REFUS_task__MODIFIER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°127 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°127 </strong> : ERR_task__MODIFIER__Code_user_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°128 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°128 </strong> : Tentative d'accès 'Code_task' non autorisé</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°129 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°129 </strong> : REFUS_task__MODIFICATION_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°130 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°130 </strong> : ERR_task__MODIFIER__task_Workflow_NON_VALIDE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°131 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°131 </strong> : ERR_task__MODIFIER__task_Workflow__HORS_WORKFLOW</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°132 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°132 </strong> : ERR_task__MODIFIER__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°133 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°133 </strong> : ERR_task__MODIFIER_3__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°134 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°134 </strong> : ERR_task__MODIFIER_4__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°135 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°135 </strong> : ERR_task__SUPPRIMER_2__Code_task_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°136 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°136 </strong> : REFUS_task__SUPPRIMER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°137 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°137 </strong> : REFUS_task__SUPPRESSION_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°138 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°138 </strong> : ERR_task__SUPPRIMER__REFUSEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°139 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°139 </strong> : ERR_task__SUPPRIMER_2__REFUSEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°140 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°140 </strong> : ERR_task__SUPPRIMER_3__REFUSEE</div></div></div>
+<div class="row"><div class="col"><h2 id="f_label">label <a role="button" class="btn btn-outline-dark" href="label">URL</a></h2></div><div class="col text-right"><a href="#top" style="font-size: 2em; color: black; font-weight: bold;">^</a></div></div>
+<h3 class="text-center">GET</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°1 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/label</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°2 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/label/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": [ { "Code_label": "...", "label_Name": "..." } ], "error": { "number": ..., "label": ... }, , "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">POST</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/label</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "label_Name": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": { "id": "...", "callback": ... }, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/label</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">[ { "label_Name": "..." } ]</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": {}, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">PUT</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">PUT</span> <span class="requete">/label/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "label_Name": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": { "callback": ... }, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">DELETE</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°1 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/label</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°2 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/label/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": {}, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">Erreurs</h3>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°0 : </div><div class="col-sm-9"><div class="alert alert-success" role="alert"><strong> Erreur n°0 </strong> : Pas d'erreur </div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°1 : </div><div class="col-sm-9"><div class="alert alert-danger" role="alert"><strong> Erreur n°1 </strong> : Authentification exigée ou refus d'accès</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°8 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°8 </strong> : Limite du nombre d'enregistrements atteinte</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°141 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°141 </strong> : REFUS_label__AJOUTER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°142 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°142 </strong> : REFUS_label__AJOUT_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°143 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°143 </strong> : ERR_label__AJOUTER__AJOUT_REFUSE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°144 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°144 </strong> : ERR_label__AJOUTER_3__ECHEC_AJOUT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°145 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°145 </strong> : ERR_label__MODIFIER__Code_label_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°146 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°146 </strong> : REFUS_label__MODIFIER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°147 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°147 </strong> : Tentative d'accès 'Code_label' non autorisé</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°148 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°148 </strong> : REFUS_label__MODIFICATION_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°149 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°149 </strong> : ERR_label__MODIFIER__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°150 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°150 </strong> : ERR_label__MODIFIER_3__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°151 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°151 </strong> : ERR_label__MODIFIER_4__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°152 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°152 </strong> : ERR_label__SUPPRIMER_2__Code_label_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°153 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°153 </strong> : REFUS_label__SUPPRIMER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°154 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°154 </strong> : REFUS_label__SUPPRESSION_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°155 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°155 </strong> : ERR_label__SUPPRIMER__REFUSEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°156 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°156 </strong> : ERR_label__SUPPRIMER_2__REFUSEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°157 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°157 </strong> : ERR_label__SUPPRIMER_3__REFUSEE</div></div></div>
+<div class="row"><div class="col"><h2 id="f_a_task_label">a_task_label <a role="button" class="btn btn-outline-dark" href="a_task_label">URL</a></h2></div><div class="col text-right"><a href="#top" style="font-size: 2em; color: black; font-weight: bold;">^</a></div></div>
+<h3 class="text-center">GET</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°1 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/a_task_label</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°2 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/a_task_label/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°3 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/task/ID/a_task_label</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°4 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/label/ID/a_task_label</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°5 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/task/ID/label/ID/a_task_label</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": [ { "Code_a_task_label": "...", "a_task_label_Link": "...", "Code_task": "...", "Code_label": "..." } ], "error": { "number": ..., "label": ... }, , "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">POST</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/a_task_label</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "a_task_label_Link": "...", "Code_task": "...", "Code_label": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": { "id": "...", "callback": ... }, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/a_task_label</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">[ { "a_task_label_Link": "...", "Code_task": "...", "Code_label": "..." } ]</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": {}, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">PUT</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">PUT</span> <span class="requete">/a_task_label/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "a_task_label_Link": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": { "callback": ... }, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">DELETE</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°1 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/a_task_label</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°2 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/a_task_label/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°3 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/task/ID/a_task_label</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°4 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/label/ID/a_task_label</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°5 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/task/ID/label/ID/a_task_label</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": {}, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">Erreurs</h3>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°0 : </div><div class="col-sm-9"><div class="alert alert-success" role="alert"><strong> Erreur n°0 </strong> : Pas d'erreur </div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°1 : </div><div class="col-sm-9"><div class="alert alert-danger" role="alert"><strong> Erreur n°1 </strong> : Authentification exigée ou refus d'accès</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°8 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°8 </strong> : Limite du nombre d'enregistrements atteinte</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°158 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°158 </strong> : REFUS_a_task_label__AJOUTER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°159 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°159 </strong> : ERR_a_task_label__AJOUTER__Code_task_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°160 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°160 </strong> : ERR_a_task_label__AJOUTER__Code_label_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°161 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°161 </strong> : ERR_a_task_label__AJOUTER__DOUBLON</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°162 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°162 </strong> : REFUS_a_task_label__AJOUT_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°163 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°163 </strong> : ERR_a_task_label__AJOUTER__REFUSE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°164 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°164 </strong> : ERR_a_task_label__AJOUTER_3__ECHEC_AJOUT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°165 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°165 </strong> : REFUS_a_task_label__MODIFIER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°166 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°166 </strong> : ERR_a_task_label__MODIFIER__Code_task_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°167 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°167 </strong> : ERR_a_task_label__MODIFIER__Code_label_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°168 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°168 </strong> : ERR_a_task_label__MODIFIER__INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°169 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°169 </strong> : REFUS_a_task_label__MODIFICATION_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°170 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°170 </strong> : ERR_a_task_label__MODIFIER__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°171 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°171 </strong> : ERR_a_task_label__MODIFIER_3__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°172 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°172 </strong> : ERR_a_task_label__MODIFIER_4__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°173 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°173 </strong> : REFUS_a_task_label__SUPPRIMER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°174 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°174 </strong> : REFUS_a_task_label__SUPPRESSION_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°175 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°175 </strong> : ERR_a_task_label__SUPPRIMER__REFUSE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°176 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°176 </strong> : ERR_a_task_label__SUPPRIMER_2__REFUSE</div></div></div>
+<div class="row"><div class="col"><h2 id="f_a_user_task">a_user_task <a role="button" class="btn btn-outline-dark" href="a_user_task">URL</a></h2></div><div class="col text-right"><a href="#top" style="font-size: 2em; color: black; font-weight: bold;">^</a></div></div>
+<h3 class="text-center">GET</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°1 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/a_user_task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°2 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/a_user_task/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°3 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/user/ID/a_user_task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°4 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/task/ID/a_user_task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°5 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/user/ID/task/ID/a_user_task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": [ { "Code_a_user_task": "...", "a_user_task_Link": "...", "Code_user": "...", "Code_task": "..." } ], "error": { "number": ..., "label": ... }, , "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">POST</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/a_user_task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "a_user_task_Link": "...", "Code_user": "...", "Code_task": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": { "id": "...", "callback": ... }, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/a_user_task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">[ { "a_user_task_Link": "...", "Code_user": "...", "Code_task": "..." } ]</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": {}, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">PUT</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">PUT</span> <span class="requete">/a_user_task/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "a_user_task_Link": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": { "callback": ... }, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">DELETE</h3>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°1 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/a_user_task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°2 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/a_user_task/ID</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°3 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/user/ID/a_user_task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°4 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/task/ID/a_user_task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Requête n°5 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">DELETE</span> <span class="requete">/user/ID/task/ID/a_user_task</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": {}, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
+<br>
+<h3 class="text-center">Erreurs</h3>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°0 : </div><div class="col-sm-9"><div class="alert alert-success" role="alert"><strong> Erreur n°0 </strong> : Pas d'erreur </div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°1 : </div><div class="col-sm-9"><div class="alert alert-danger" role="alert"><strong> Erreur n°1 </strong> : Authentification exigée ou refus d'accès</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°8 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°8 </strong> : Limite du nombre d'enregistrements atteinte</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°177 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°177 </strong> : REFUS_a_user_task__AJOUTER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°178 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°178 </strong> : ERR_a_user_task__AJOUTER__Code_user_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°179 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°179 </strong> : ERR_a_user_task__AJOUTER__Code_task_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°180 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°180 </strong> : ERR_a_user_task__AJOUTER__DOUBLON</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°181 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°181 </strong> : REFUS_a_user_task__AJOUT_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°182 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°182 </strong> : ERR_a_user_task__AJOUTER__REFUSE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°183 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°183 </strong> : ERR_a_user_task__AJOUTER_3__ECHEC_AJOUT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°184 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°184 </strong> : REFUS_a_user_task__MODIFIER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°185 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°185 </strong> : ERR_a_user_task__MODIFIER__Code_user_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°186 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°186 </strong> : ERR_a_user_task__MODIFIER__Code_task_INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°187 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°187 </strong> : ERR_a_user_task__MODIFIER__INEXISTANT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°188 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°188 </strong> : REFUS_a_user_task__MODIFICATION_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°189 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°189 </strong> : ERR_a_user_task__MODIFIER__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°190 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°190 </strong> : ERR_a_user_task__MODIFIER_3__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°191 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°191 </strong> : ERR_a_user_task__MODIFIER_4__AUCUN_CHANGEMENT</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°192 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°192 </strong> : REFUS_a_user_task__SUPPRIMER</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°193 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°193 </strong> : REFUS_a_user_task__SUPPRESSION_BLOQUEE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°194 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°194 </strong> : ERR_a_user_task__SUPPRIMER__REFUSE</div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right"> Erreur n°195 : </div><div class="col-sm-9"><div class="alert alert-warning" role="alert"><strong> Erreur n°195 </strong> : ERR_a_user_task__SUPPRIMER_2__REFUSE</div></div></div>
+<hr><footer><p>© My Framework 2020</p></footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

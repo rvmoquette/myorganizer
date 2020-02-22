@@ -1,0 +1,11 @@
+<?php declare(strict_types=1);
+include __DIR__ . '/erreurs/erreurs__user.php';
+include __DIR__ . '/langues/fr/user.php';
+include __DIR__ . '/erreurs/erreurs__task.php';
+include __DIR__ . '/langues/fr/task.php';
+include __DIR__ . '/erreurs/erreurs__label.php';
+include __DIR__ . '/langues/fr/label.php';
+include __DIR__ . '/erreurs/erreurs__a_task_label.php';
+include __DIR__ . '/langues/fr/a_task_label.php';
+include __DIR__ . '/erreurs/erreurs__a_user_task.php';
+include __DIR__ . '/langues/fr/a_user_task.php';

@@ -1,0 +1,16 @@
+#source
+outil_developpeur.php
+data/*
+fichiers/*
+systeme/myorganizer/cache_systeme/*
+systeme/myorganizer/tables/monframework/cache/*
+systeme/myorganizer/cache/*
+systeme/myorganizer/tables/monframework/mf_connexion.sessions/*
+
+#eclipse
+.buildpath
+.project
+.settings/*
+
+#jetbrains
+.idea/*

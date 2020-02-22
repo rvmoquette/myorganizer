@@ -1,0 +1,284 @@
+
+.zone_planning .titre { font-weight: bold; font-size: 10px; }
+
+.table-calendrier { line-height: normal; }
+
+.table-calendrier table { margin: auto; }
+
+.centrer_tableaux { overflow: auto; }
+
+.contour_calendrier .gabarit, .contour_calendrier .container-wysiwyg { margin-top: 0; margin-bottom: 0; }
+
+.calendrier_mois_colonne_mois .form_dyn_bloc { width: 100%; min-height: none; min-height: 0; }
+.calendrier_mois_colonne_mois .form_dyn_champ { margin-right: 0; }
+.calendrier_mois_colonne_mois .form_dyn_champ_ { background-color: transparent; border: none; text-align: center; font-size: 0.9em; font-style: italic; color: #333; }
+
+/* calendrier 1 */
+
+.contour_calendrier {}
+
+.calendrier_structure { text-align: center; border-spacing: 0; border-collapse: collapse; margin-top: 10px; width: 100%; table-layout:fixed; }
+
+.calendrier_jour_structure {
+    border: solid 1px #aaa;
+    position: relative;
+    vertical-align: top;
+}
+
+.calendrier_jour_contenu {
+    padding: 5px 1%;
+    padding-top: 15px;
+    display: block;
+    text-align: left;
+    width: 98%;
+    min-height: 100px;
+    font: 12px Arial,sans-serif;
+    word-wrap: break-word;
+}
+
+.calendrier_jour_contenu a {
+    text-decoration: none;
+    color: #000;
+    text-align: center;
+}
+
+.calendrier_jour_legende {
+    position: absolute;
+    left: 5px;
+    top: 0px;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #aaa;
+}
+
+.zone_cliquable_calendrier { display: block; border: 1px solid #111; margin-top: 5px; min-height: 32px; }
+
+.calendrier_structure button {
+    border: 1px solid #111;
+
+    padding: 5px 10px;
+
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+
+    cursor: pointer;
+    margin: 5px 15px 10px 15px;
+}
+
+/* calendrier 2 */
+
+.calendrier_mois_structure {
+    border-collapse: collapse;
+    table-layout:fixed;
+}
+
+.calendrier_mois_structure, .calendrier_mois {
+    width: 100%;
+    font-family: Arial;
+}
+
+.calendrier_mois_colonne_mois {
+    vertical-align: top;
+}
+
+.calendrier_mois {
+    border-spacing: 1px;
+    margin-top: 10px;
+}
+
+.calendrier_mois th {
+    background-color: #a8b0bd;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+}
+
+.calendrier_mois td {
+    background-color: rgb(218, 233, 248);
+}
+
+.calendrier_mois .j_Sa td, .calendrier_mois .j_Di td {
+    background-color: rgb(203, 207, 207);
+}
+
+.calendrier_mois .j_Di td {
+    border-bottom: #FF2121 1px solid;
+}
+
+.calendrier_mois td.calendrier_num_semaine, .calendrier_mois tr:HOVER td.calendrier_num_semaine {
+    background: none; background-color: rgb(197, 210, 235);
+}
+
+.calendrier_mois td.calendrier_num_semaine.fin {
+    border-bottom: #FF2121 1px solid;
+}
+
+.calendrier_num_jour, .calendrier_lib_jour, .calendrier_num_semaine { width: 22px; text-align: center; }
+
+.calendrier_structure a.lien, .calendrier_mois_structure a.lien {
+    text-decoration: none;
+    color: black;
+    font-size: 1em;
+    display: block;
+}
+
+.calendrier_mois tr:HOVER td {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a9db80+0,96c56f+100;Green+3D+%232 */
+    background: rgb(169,219,128); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(169,219,128,1) 0%, rgba(150,197,111,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  rgba(169,219,128,1) 0%,rgba(150,197,111,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  rgba(169,219,128,1) 0%,rgba(150,197,111,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9db80', endColorstr='#96c56f',GradientType=0 ); /* IE6-9 */
+}
+
+/* calendrier 3 */
+
+.position_zone_planning a {
+    color: #000;
+    text-decoration: none;
+}
+
+.zone_planning {
+    /*border: 1px solid #ccc;*/
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+    margin-left: 1px;
+    margin-right: 2px;
+    padding: 0 2px;
+    height: 0px;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.zone_cliquable_calendrier { z-index: 1; }
+a:HOVER .zone_planning, a:FOCUS .zone_planning, a:ACTIVE .zone_planning, .zone_planning:HOVER, .zone_cliquable_calendrier:HOVER { z-index: 1000 !important; }
+
+.tps_trajet a:HOVER .zone_planning, .tps_trajet a:FOCUS .zone_planning, .tps_trajet a:ACTIVE .zone_planning {}
+
+.calendrier_3 a:HOVER .zone_planning, .calendrier_3 a:ACTIVE .zone_planning, .calendrier_3 a:FOCUS .zone_planning,
+.calendrier_1 a:HOVER .zone_cliquable_calendrier, .calendrier_1 a:ACTIVE .zone_cliquable_calendrier, .calendrier_1 a:FOCUS .zone_cliquable_calendrier { opacity: 1; }
+
+.devant { z-index: 10000 !important; }
+
+.zone_planning .plage_horaire { font: bold 10px Arial,sans-serif; text-align: left; }
+.zone_planning .informations { font: 11px Arial,sans-serif; text-align: left; word-wrap: break-word; }
+.zone_cliquable_calendrier .plage_horaire {font: bold 10px Arial,sans-serif; margin-bottom: 2px;}
+
+.quadrillage_jour_ligne_1 { background-color: #bbb; }
+.quadrillage_jour_ligne_2 { background-color: #ddd; }
+
+.quadrillage_jour span { display: block; color: #bbb; font-weight: bold; }
+
+.calendrier_3 .entete { height: 50px; font-size: 13px; font-weight: bold; border-right: 1px solid #ddd; }
+.calendrier_3 .last .entete { border-right: none; }
+
+.calendrier_3 .quadrillage_jour { border-right: 1px solid #ddd; border-left: 15px solid #d0d0d0;  }
+.calendrier_3 .last .quadrillage_jour { border-right: none; }
+
+.calendrier_3 .corps { margin-left: -1px; padding-left: 1px; }
+
+.calendrier_3 .courant,
+.calendrier_jour_structure.courant {}
+
+.calendrier_3 .zone_planning {  }
+.calendrier_jour_structure .zone_cliquable_calendrier {  } /* calendrier 1 */
+
+.calendrier_3 .passe .zone_planning { /* opacity: 0.6; */ }
+.calendrier_jour_structure.passe .zone_cliquable_calendrier { /* opacity: 0.6; */ } /* calendrier 1 */
+
+.planning_heure, .planning_heure:hover, .planning_heure:focus, .planning_heure:active { text-decoration: none; }
+
+.planning_heure:HOVER .quadrillage_jour,
+.planning_heure:focus .quadrillage_jour,
+.planning_heure:active .quadrillage_jour { background: rgba(0,0,0,0.26); border-left: none; }
+
+.planning_heure:HOVER .quadrillage_jour span,
+.planning_heure:focus .quadrillage_jour span,
+.planning_heure:active .quadrillage_jour span { color: white; }
+
+.quadrillage_jour span.marquage_intermediaire { display: none; }
+
+.planning_heure:HOVER .quadrillage_jour span.marquage_intermediaire,
+.planning_heure:focus .quadrillage_jour span.marquage_intermediaire,
+.planning_heure:active .quadrillage_jour span.marquage_intermediaire { display: inherit; }
+
+.position_zone_planning.plage_occupee .zone_planning { border-color: #333; background-color: #333; color: black;
+    background:
+    /* On "top" */
+    repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        #ccc 10px,
+        #ccc 20px
+    ),
+    /* on "bottom" */
+    linear-gradient(
+        to bottom,
+        #eee,
+        #999
+    );
+}
+.position_zone_planning.tps_trajet .zone_planning .block_planning .plage_horaire { font-style: italic; text-align: center; }
+
+
+
+.zone_planning::-webkit-scrollbar, .zone_planning::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+
+.zone_planning::-webkit-scrollbar-thumb, .zone_planning::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,.26);
+}
+
+/* Personalisation */
+
+
+.panel_control_planning
+{
+    float: right;
+    margin-top: -11px;
+}
+
+.planning_left,
+.planning_right,
+.planning_top,
+.planning_bottom,
+.planning_edit
+{
+    display: inline-block;
+    padding: 2px 0;
+    width: 19px;
+    background-color: rgba(255,255,255,0.5);;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+
+.zone_planning
+{
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+}
+
+.nom_planning
+{
+    padding: 0 15px;
+}
+
+/* jquery */
+
+.ui-resizable-s {
+    bottom: 0;
+}
+
+.ui-draggable {
+    cursor: move;
+}

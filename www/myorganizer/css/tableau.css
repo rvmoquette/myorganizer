@@ -1,0 +1,54 @@
+
+a.rechercher span {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url("../images/icones/recherche_32.png");
+    margin: 5px;
+}
+
+a.imprimer span {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url("../images/icones/agt-imprimer-icone-6102-32.png");
+    margin: 5px;
+}
+
+a.format_csv span {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url("../images/icones/excelFile_32.png");
+    margin: 5px;
+}
+
+a.trier span {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background-image: url("../images/icones/double_fleches_v_8.png");
+    margin: 0 0 0 5px;
+}
+
+.tableau_champ_recherche {
+    width: 95%;
+}
+
+.num_page_tableau {
+    display: inline-block;
+    padding: 2px 5px;
+    border: 1px #121212 solid;
+    margin: 0 5px;
+    margin-top: 5px;
+}
+
+.barre_pages_tableau {
+    margin: auto;
+    margin-top: 5px;
+    width: 80%;
+    text-align: center;
+}
+
+.border-left { border-left: 1px solid #ddd; }
+.border-right { border-right: 1px solid #ddd; }
