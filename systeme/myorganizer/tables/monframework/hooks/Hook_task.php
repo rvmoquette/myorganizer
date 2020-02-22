@@ -33,6 +33,10 @@ class Hook_task
         $mf_droits_defaut['task__CREER'] = false;
         // Mise à jour des droits
         // ici le code
+        // everobody can add a task
+        if (is_connected()) {
+            $mf_droits_defaut['task__AJOUTER'] = true;
+        }
     }
 
     public static function autorisation_ajout(string $task_Name, string $task_Date_creation, string $task_Description, ?int $task_Workflow, int $Code_user)
