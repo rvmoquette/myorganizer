@@ -16,6 +16,7 @@
             if ( ! MULTI_BLOCS ) { $code_html = ''; }
 
             include __DIR__ . '/_task_get.php';
+            include __DIR__ . '/_a_user_task_list.php';
 
             $code_html .= recuperer_gabarit('main/section.html', [
                 '{fonction}'  => 'apercu',
