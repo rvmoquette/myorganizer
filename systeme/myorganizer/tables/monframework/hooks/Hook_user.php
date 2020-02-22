@@ -16,6 +16,12 @@ class Hook_user
     public static function pre_controller(string &$user_Login, string &$user_Password, string &$user_Email, bool &$user_Admin, ?int $Code_user = null)
     {
         // ici le code
+        if ($Code_user == 0) { // new user
+            $db = new DB();
+            if ($db -> user() -> mf_compter() == 0) { // the first user is an admin
+                $user_Admin = true;
+            }
+        }
     }
 
     public static function hook_actualiser_les_droits_ajouter()
