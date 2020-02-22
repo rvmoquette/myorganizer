@@ -22,6 +22,7 @@
     $champs = [];
     if ( isset_parametre_api("user_Login") ) $champs['user_Login'] = lecture_parametre_api("user_Login");
     if ( isset_parametre_api("user_Email") ) $champs['user_Email'] = lecture_parametre_api("user_Email");
+    if ( isset_parametre_api("user_Admin") ) $champs['user_Admin'] = lecture_parametre_api("user_Admin");
     $retour = $table_user->mf_modifier_2([$Code_user => $champs]);
     if ($retour['code_erreur'] == 0) {
         $cache = new Cachehtml();

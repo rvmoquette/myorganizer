@@ -26,20 +26,22 @@ End Function
 '   | user |
 '   +------+
 
-Function user__ajouter(ByVal user_Login As String, ByVal user_Password As String, ByVal user_Email As String) As Long
+Function user__ajouter(ByVal user_Login As String, ByVal user_Password As String, ByVal user_Email As String, ByVal user_Admin As String) As Long
     user_Login = requete.convert_encode_url(user_Login)
     user_Password = requete.convert_encode_url(user_Password)
     user_Email = requete.convert_encode_url(user_Email)
-    requete.requete_serveur "user/ajouter.php?" & "vue=tableau" & "&mf_token=" & mf_token & "&user_Login=" & user_Login & "&user_Password=" & user_Password & "&user_Email=" & user_Email
+    user_Admin = requete.convert_encode_url(user_Admin)
+    requete.requete_serveur "user/ajouter.php?" & "vue=tableau" & "&mf_token=" & mf_token & "&user_Login=" & user_Login & "&user_Password=" & user_Password & "&user_Email=" & user_Email & "&user_Admin=" & user_Admin
     user__ajouter = requete.retour_ok()
 End Function
 
-Function user__modifier(ByVal Code_user As String, ByVal user_Login As String, ByVal user_Password As String, ByVal user_Email As String) As Long
+Function user__modifier(ByVal Code_user As String, ByVal user_Login As String, ByVal user_Password As String, ByVal user_Email As String, ByVal user_Admin As String) As Long
     Code_user = requete.convert_encode_url(Code_user)
     user_Login = requete.convert_encode_url(user_Login)
     user_Password = requete.convert_encode_url(user_Password)
     user_Email = requete.convert_encode_url(user_Email)
-    requete.requete_serveur "user/modifier.php?" & "vue=tableau" & "&mf_token=" & mf_token & "&Code_user=" & Code_user & "&user_Login=" & user_Login & "&user_Password=" & user_Password & "&user_Email=" & user_Email
+    user_Admin = requete.convert_encode_url(user_Admin)
+    requete.requete_serveur "user/modifier.php?" & "vue=tableau" & "&mf_token=" & mf_token & "&Code_user=" & Code_user & "&user_Login=" & user_Login & "&user_Password=" & user_Password & "&user_Email=" & user_Email & "&user_Admin=" & user_Admin
     user__modifier = requete.retour_ok()
 End Function
 
@@ -62,6 +64,13 @@ Function user__modifier__user_Email(ByVal Code_user As String, ByVal user_Email 
     user_Email = requete.convert_encode_url(user_Email)
     requete.requete_serveur "user/modifier.php?" & "vue=tableau" & "&mf_token=" & mf_token & "&Code_user=" & Code_user & "&user_Email=" & user_Email
     user__modifier__user_Email = requete.retour_ok()
+End Function
+
+Function user__modifier__user_Admin(ByVal Code_user As String, ByVal user_Admin As String) As Long
+    Code_user = requete.convert_encode_url(Code_user)
+    user_Admin = requete.convert_encode_url(user_Admin)
+    requete.requete_serveur "user/modifier.php?" & "vue=tableau" & "&mf_token=" & mf_token & "&Code_user=" & Code_user & "&user_Admin=" & user_Admin
+    user__modifier__user_Admin = requete.retour_ok()
 End Function
 
 Function user__supprimer(ByVal Code_user As String) As Long

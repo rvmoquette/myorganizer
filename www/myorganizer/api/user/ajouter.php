@@ -21,7 +21,8 @@
     $user_Login = (string) lecture_parametre_api("user_Login", '');
     $user_Password = (string) lecture_parametre_api("user_Password", '');
     $user_Email = (string) lecture_parametre_api("user_Email", '');
-    $retour = $table_user->mf_ajouter($user_Login, $user_Password, $user_Email);
+    $user_Admin = (bool) lecture_parametre_api("user_Admin", '');
+    $retour = $table_user->mf_ajouter($user_Login, $user_Password, $user_Email, $user_Admin);
     if ( $retour['code_erreur']==0 )
     {
         $cache = new Cachehtml();

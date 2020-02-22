@@ -66,7 +66,7 @@ function mf_documentation_matrice_workflow(string $colonne)
 <div class="jumbotron jumbotron-fluid">
 <div class="container-fluid">
 <h1 class="display-4">Dictionnaire des données du projet myorganizer</h1>
-<p class="lead">Date : 22/02/2020 12:22:26</p>
+<p class="lead">Date : 22/02/2020 12:38:44</p>
 </div>
 </div>
 <div class="container-fluid">
@@ -81,6 +81,7 @@ function mf_documentation_matrice_workflow(string $colonne)
 <tr scope="row"><td>Identifiant</td><td>Chaine jusqu'à 255 caractères</td><td>''</td><td><small>user_Login</small></td></tr>
 <tr scope="row"><td>Mot de passe</td><td>Chaine jusqu'à 255 caractères</td><td>''</td><td><small>user_Password</small></td></tr>
 <tr scope="row"><td>Email</td><td>Chaine jusqu'à 255 caractères</td><td>''</td><td><small>user_Email</small></td></tr>
+<tr scope="row"><td>Administrateur</td><td>Booléen (oui/non)<br><span style="font-size: 0.85em; font-style: italic;">[1 => "Oui", 0 => "Non"]</span></td><td>0</td><td><small>user_Admin</small></td></tr>
 </tbody>
 </table>
 <hr>

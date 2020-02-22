@@ -80,6 +80,16 @@ class user_monframework extends entite_monframework
             executer_requete_mysql('UPDATE '.inst('user').' SET user_Email=' . format_sql('user_Email', $mf_initialisation['user_Email']) . ';', array_search('user', LISTE_TABLES_HISTORIQUE_DESACTIVE) === false);
         }
 
+        if (isset($liste_colonnes['user_Admin'])) {
+            if (typeMyql2Sql($liste_colonnes['user_Admin']['Type'])!='BOOL') {
+                executer_requete_mysql('ALTER TABLE '.inst('user').' CHANGE user_Admin user_Admin BOOL;', array_search('user', LISTE_TABLES_HISTORIQUE_DESACTIVE) === false);
+            }
+            unset($liste_colonnes['user_Admin']);
+        } else {
+            executer_requete_mysql('ALTER TABLE '.inst('user').' ADD user_Admin BOOL;', array_search('user', LISTE_TABLES_HISTORIQUE_DESACTIVE) === false);
+            executer_requete_mysql('UPDATE '.inst('user').' SET user_Admin=' . format_sql('user_Admin', $mf_initialisation['user_Admin']) . ';', array_search('user', LISTE_TABLES_HISTORIQUE_DESACTIVE) === false);
+        }
+
         $liste_colonnes_a_indexer = [];
 
         if (isset($liste_colonnes['mf_signature'])) {
@@ -130,7 +140,7 @@ class user_monframework extends entite_monframework
         }
     }
 
-    public function mf_ajouter(string $user_Login, string $user_Password, string $user_Email, ?bool $force = false)
+    public function mf_ajouter(string $user_Login, string $user_Password, string $user_Email, bool $user_Admin, ?bool $force = false)
     {
         if ($force === null) {
             $force = false;
@@ -141,8 +151,9 @@ class user_monframework extends entite_monframework
         $user_Login = (string) $user_Login;
         $user_Password = (string) $user_Password;
         $user_Email = (string) $user_Email;
+        $user_Admin = ($user_Admin == true ? true : false);
         // Fin typage
-        Hook_user::pre_controller($user_Login, $user_Password, $user_Email);
+        Hook_user::pre_controller($user_Login, $user_Password, $user_Email, $user_Admin);
         if (!$force)
         {
             if (!self::$maj_droits_ajouter_en_cours)
@@ -153,18 +164,19 @@ class user_monframework extends entite_monframework
             }
         }
         if ( !$force && !mf_matrice_droits(['user__AJOUTER']) ) $code_erreur = REFUS_USER__AJOUTER;
-        elseif (! Hook_user::autorisation_ajout($user_Login, $user_Password, $user_Email) ) $code_erreur = REFUS_USER__AJOUT_BLOQUEE;
+        elseif (! Hook_user::autorisation_ajout($user_Login, $user_Password, $user_Email, $user_Admin) ) $code_erreur = REFUS_USER__AJOUT_BLOQUEE;
         elseif ( $this->rechercher_user_Login($user_Login)!=0 ) $code_erreur = ERR_USER__AJOUTER__USER_LOGIN_DOUBLON;
         elseif ( ACTIVER_CONNEXION_EMAIL && $this->rechercher_user_Email($user_Email)!=0 ) $code_erreur = ERR_USER__AJOUTER__USER_EMAIL_DOUBLON;
         else {
-            Hook_user::data_controller($user_Login, $user_Password, $user_Email);
-            $mf_signature = text_sql(Hook_user::calcul_signature($user_Login, $user_Email));
-            $mf_cle_unique = text_sql(Hook_user::calcul_cle_unique($user_Login, $user_Email));
+            Hook_user::data_controller($user_Login, $user_Password, $user_Email, $user_Admin);
+            $mf_signature = text_sql(Hook_user::calcul_signature($user_Login, $user_Email, $user_Admin));
+            $mf_cle_unique = text_sql(Hook_user::calcul_cle_unique($user_Login, $user_Email, $user_Admin));
             $user_Login = text_sql($user_Login);
             $salt = salt(100);
             $user_Password = md5($user_Password.$salt).':'.$salt;
             $user_Email = text_sql($user_Email);
-            $requete = "INSERT INTO ".inst('user')." ( mf_signature, mf_cle_unique, mf_date_creation, mf_date_modification, user_Login, user_Password, user_Email ) VALUES ( '$mf_signature', '$mf_cle_unique', '".get_now()."', '".get_now()."', '$user_Login', '$user_Password', '$user_Email' );";
+            $user_Admin = ($user_Admin == true ? 1 : 0);
+            $requete = "INSERT INTO ".inst('user')." ( mf_signature, mf_cle_unique, mf_date_creation, mf_date_modification, user_Login, user_Password, user_Email, user_Admin ) VALUES ( '$mf_signature', '$mf_cle_unique', '".get_now()."', '".get_now()."', '$user_Login', '$user_Password', '$user_Email', $user_Admin );";
             executer_requete_mysql($requete, array_search('user', LISTE_TABLES_HISTORIQUE_DESACTIVE) === false);
             $Code_user = requete_mysql_insert_id();
             if ($Code_user==0)
@@ -194,12 +206,14 @@ class user_monframework extends entite_monframework
         $user_Login = (isset($ligne['user_Login'])?$ligne['user_Login']:$mf_initialisation['user_Login']);
         $user_Password = (isset($ligne['user_Password'])?$ligne['user_Password']:$mf_initialisation['user_Password']);
         $user_Email = (isset($ligne['user_Email'])?$ligne['user_Email']:$mf_initialisation['user_Email']);
+        $user_Admin = (isset($ligne['user_Admin'])?$ligne['user_Admin']:$mf_initialisation['user_Admin']);
         // Typage
         $user_Login = (string) $user_Login;
         $user_Password = (string) $user_Password;
         $user_Email = (string) $user_Email;
+        $user_Admin = ($user_Admin == true ? true : false);
         // Fin typage
-        return $this->mf_ajouter($user_Login, $user_Password, $user_Email, $force);
+        return $this->mf_ajouter($user_Login, $user_Password, $user_Email, $user_Admin, $force);
     }
 
     public function mf_ajouter_3(array $lignes) // array( array( 'colonne1' => 'valeur1', 'colonne2' => 'valeur2',  [...] ), [...] )
@@ -212,11 +226,12 @@ class user_monframework extends entite_monframework
             $salt = salt(100);
             $user_Password = md5(isset($ligne['user_Password'])?$ligne['user_Password']:$mf_initialisation['user_Password'].$salt).':'.$salt;
             $user_Email = text_sql(isset($ligne['user_Email'])?$ligne['user_Email']:$mf_initialisation['user_Email']);
-            $values .= ($values!="" ? "," : "")."('$user_Login', '$user_Password', '$user_Email')";
+            $user_Admin = (isset($ligne['user_Admin'])?$ligne['user_Admin']:$mf_initialisation['user_Admin'] == true ? 1 : 0);
+            $values .= ($values!="" ? "," : "")."('$user_Login', '$user_Password', '$user_Email', $user_Admin)";
         }
         if ($values!='')
         {
-            $requete = "INSERT INTO ".inst('user')." ( user_Login, user_Password, user_Email ) VALUES $values;";
+            $requete = "INSERT INTO ".inst('user')." ( user_Login, user_Password, user_Email, user_Admin ) VALUES $values;";
             executer_requete_mysql( $requete , array_search('user', LISTE_TABLES_HISTORIQUE_DESACTIVE) === false);
             $n = requete_mysqli_affected_rows();
             if ($n < count($lignes))
@@ -240,8 +255,8 @@ class user_monframework extends entite_monframework
     public function mf_actualiser_signature(int $Code_user)
     {
         $user = $this->mf_get_2($Code_user, ['autocompletion' => false]);
-        $mf_signature = text_sql(Hook_user::calcul_signature($user['user_Login'], $user['user_Email']));
-        $mf_cle_unique = text_sql(Hook_user::calcul_cle_unique($user['user_Login'], $user['user_Email']));
+        $mf_signature = text_sql(Hook_user::calcul_signature($user['user_Login'], $user['user_Email'], $user['user_Admin']));
+        $mf_cle_unique = text_sql(Hook_user::calcul_cle_unique($user['user_Login'], $user['user_Email'], $user['user_Admin']));
         $table = inst('user');
         executer_requete_mysql("UPDATE $table SET mf_signature='$mf_signature', mf_cle_unique='$mf_cle_unique' WHERE Code_user=$Code_user;", array_search('user', LISTE_TABLES_HISTORIQUE_DESACTIVE) === false);
         if (requete_mysqli_affected_rows() == 1) {
@@ -249,7 +264,7 @@ class user_monframework extends entite_monframework
         }
     }
 
-    public function mf_modifier( int $Code_user, string $user_Login, string $user_Password, string $user_Email, ?bool $force = null)
+    public function mf_modifier( int $Code_user, string $user_Login, string $user_Password, string $user_Email, bool $user_Admin, ?bool $force = null)
     {
         if ($force === null) {
             $force = false;
@@ -259,8 +274,9 @@ class user_monframework extends entite_monframework
         $user_Login = (string) $user_Login;
         $user_Password = (string) $user_Password;
         $user_Email = (string) $user_Email;
+        $user_Admin = ($user_Admin == true ? true : false);
         // Fin typage
-        Hook_user::pre_controller($user_Login, $user_Password, $user_Email, $Code_user);
+        Hook_user::pre_controller($user_Login, $user_Password, $user_Email, $user_Admin, $Code_user);
         if (! $force) {
             if (! self::$maj_droits_modifier_en_cours) {
                 self::$maj_droits_modifier_en_cours = true;
@@ -272,7 +288,7 @@ class user_monframework extends entite_monframework
         if ( !$force && !mf_matrice_droits(['user__MODIFIER']) ) $code_erreur = REFUS_USER__MODIFIER;
         elseif ( !$this->mf_tester_existance_Code_user($Code_user) ) $code_erreur = ERR_USER__MODIFIER__CODE_USER_INEXISTANT;
         elseif (CONTROLE_ACCES_DONNEES_DEFAUT && ! Hook_mf_systeme::controle_acces_donnees('Code_user', $Code_user)) $code_erreur = ACCES_CODE_USER_REFUSE;
-        elseif ( !Hook_user::autorisation_modification($Code_user, $user_Login, $user_Password, $user_Email) ) $code_erreur = REFUS_USER__MODIFICATION_BLOQUEE;
+        elseif ( !Hook_user::autorisation_modification($Code_user, $user_Login, $user_Password, $user_Email, $user_Admin) ) $code_erreur = REFUS_USER__MODIFICATION_BLOQUEE;
         elseif ($this->rechercher_user_Login($user_Login) != 0 && $this->rechercher_user_Login($user_Login)!=$Code_user) $code_erreur = ERR_USER__AJOUTER__USER_LOGIN_DOUBLON;
         else {
             if (! isset(self::$lock[$Code_user])) {
@@ -282,14 +298,15 @@ class user_monframework extends entite_monframework
                 self::$cache_db->add_lock((string) $Code_user);
             }
             self::$lock[$Code_user]++;
-            Hook_user::data_controller($user_Login, $user_Password, $user_Email, $Code_user);
+            Hook_user::data_controller($user_Login, $user_Password, $user_Email, $user_Admin, $Code_user);
             $mf_colonnes_a_modifier=[];
             $bool__user_Login = false; if ($user_Login !== $user['user_Login']) {Hook_user::data_controller__user_Login($user['user_Login'], $user_Login, $Code_user); if ( $user_Login !== $user['user_Login'] ) { $mf_colonnes_a_modifier[] = 'user_Login=' . format_sql('user_Login', $user_Login); $bool__user_Login = true;}}
             $bool__user_Password = false; if ($user_Password !== '') {$mf_colonnes_a_modifier[] = 'user_Password = ' . format_sql('user_Password', $user_Password); $bool__user_Password = true;}
             $bool__user_Email = false; if ($user_Email !== $user['user_Email']) {Hook_user::data_controller__user_Email($user['user_Email'], $user_Email, $Code_user); if ( $user_Email !== $user['user_Email'] ) { $mf_colonnes_a_modifier[] = 'user_Email=' . format_sql('user_Email', $user_Email); $bool__user_Email = true;}}
+            $bool__user_Admin = false; if ($user_Admin !== $user['user_Admin']) {Hook_user::data_controller__user_Admin($user['user_Admin'], $user_Admin, $Code_user); if ( $user_Admin !== $user['user_Admin'] ) { $mf_colonnes_a_modifier[] = 'user_Admin=' . format_sql('user_Admin', $user_Admin); $bool__user_Admin = true;}}
             if (count($mf_colonnes_a_modifier) > 0) {
-                $mf_signature = text_sql(Hook_user::calcul_signature($user_Login, $user_Email));
-                $mf_cle_unique = text_sql(Hook_user::calcul_cle_unique($user_Login, $user_Email));
+                $mf_signature = text_sql(Hook_user::calcul_signature($user_Login, $user_Email, $user_Admin));
+                $mf_cle_unique = text_sql(Hook_user::calcul_cle_unique($user_Login, $user_Email, $user_Admin));
                 $mf_colonnes_a_modifier[] = 'mf_signature=\'' . $mf_signature . '\'';
                 $mf_colonnes_a_modifier[] = 'mf_cle_unique=\'' . $mf_cle_unique . '\'';
                 $mf_colonnes_a_modifier[] = 'mf_date_modification=\'' . get_now() . '\'';
@@ -299,7 +316,7 @@ class user_monframework extends entite_monframework
                     $code_erreur = ERR_USER__MODIFIER__AUCUN_CHANGEMENT;
                 } else {
                     self::$cache_db->clear();
-                    Hook_user::modifier($Code_user, $bool__user_Login, $bool__user_Password, $bool__user_Email);
+                    Hook_user::modifier($Code_user, $bool__user_Login, $bool__user_Password, $bool__user_Email, $bool__user_Admin);
                 }
             } else {
                 $code_erreur = ERR_USER__MODIFIER__AUCUN_CHANGEMENT;
@@ -340,12 +357,14 @@ class user_monframework extends entite_monframework
                 $user_Login = ( isset($colonnes['user_Login']) && ( $force || mf_matrice_droits(['api_modifier__user_Login', 'user__MODIFIER']) ) ? $colonnes['user_Login'] : ( isset($user['user_Login']) ? $user['user_Login'] : '' ) );
                 $user_Password = ( isset($colonnes['user_Password']) && ( $force || mf_matrice_droits(['api_modifier__user_Password', 'user__MODIFIER']) ) ? $colonnes['user_Password'] : '' );
                 $user_Email = ( isset($colonnes['user_Email']) && ( $force || mf_matrice_droits(['api_modifier__user_Email', 'user__MODIFIER']) ) ? $colonnes['user_Email'] : ( isset($user['user_Email']) ? $user['user_Email'] : '' ) );
+                $user_Admin = ( isset($colonnes['user_Admin']) && ( $force || mf_matrice_droits(['api_modifier__user_Admin', 'user__MODIFIER']) ) ? $colonnes['user_Admin'] : ( isset($user['user_Admin']) ? $user['user_Admin'] : '' ) );
                 // Typage
                 $user_Login = (string) $user_Login;
                 $user_Password = (string) $user_Password;
                 $user_Email = (string) $user_Email;
+                $user_Admin = ($user_Admin == true ? true : false);
                 // Fin typage
-                $retour = $this->mf_modifier($Code_user, $user_Login, $user_Password, $user_Email, true);
+                $retour = $this->mf_modifier($Code_user, $user_Login, $user_Password, $user_Email, $user_Admin, true);
                 if ($retour['code_erreur'] != 0 && $retour['code_erreur'] != ERR_USER__MODIFIER__AUCUN_CHANGEMENT) {
                     $code_erreur = $retour['code_erreur'];
                 }
@@ -377,7 +396,7 @@ class user_monframework extends entite_monframework
         {
             foreach ($colonnes as $colonne => $valeur)
             {
-                if ( $colonne=='user_Login' || $colonne=='user_Password' || $colonne=='user_Email' )
+                if ( $colonne=='user_Login' || $colonne=='user_Password' || $colonne=='user_Email' || $colonne=='user_Admin' )
                 {
                     $valeurs_en_colonnes[$colonne][$Code_user]=$valeur;
                     $indices_par_colonne[$colonne][]=$Code_user;
@@ -442,6 +461,7 @@ class user_monframework extends entite_monframework
         if (isset($data['user_Login'])) { $mf_colonnes_a_modifier[] = 'user_Login = ' . format_sql('user_Login', $data['user_Login']); }
         if (isset($data['user_Password'])) { $mf_colonnes_a_modifier[] = 'user_Password = ' . format_sql('user_Password', $data['user_Password']); }
         if (isset($data['user_Email'])) { $mf_colonnes_a_modifier[] = 'user_Email = ' . format_sql('user_Email', $data['user_Email']); }
+        if (isset($data['user_Admin'])) { $mf_colonnes_a_modifier[] = 'user_Admin = ' . format_sql('user_Admin', $data['user_Admin']); }
         if (count($mf_colonnes_a_modifier) > 0) {
             // cond_mysql
             $argument_cond = '';
@@ -699,11 +719,13 @@ class user_monframework extends entite_monframework
                     if ( strpos($argument_cond, 'user_Login')!==false ) { $liste_colonnes_a_indexer['user_Login'] = 'user_Login'; }
                     if ( strpos($argument_cond, 'user_Password')!==false ) { $liste_colonnes_a_indexer['user_Password'] = 'user_Password'; }
                     if ( strpos($argument_cond, 'user_Email')!==false ) { $liste_colonnes_a_indexer['user_Email'] = 'user_Email'; }
+                    if ( strpos($argument_cond, 'user_Admin')!==false ) { $liste_colonnes_a_indexer['user_Admin'] = 'user_Admin'; }
                 }
                 if (isset($options['tris'])) {
                     if ( isset($options['tris']['user_Login']) ) { $liste_colonnes_a_indexer['user_Login'] = 'user_Login'; }
                     if ( isset($options['tris']['user_Password']) ) { $liste_colonnes_a_indexer['user_Password'] = 'user_Password'; }
                     if ( isset($options['tris']['user_Email']) ) { $liste_colonnes_a_indexer['user_Email'] = 'user_Email'; }
+                    if ( isset($options['tris']['user_Admin']) ) { $liste_colonnes_a_indexer['user_Admin'] = 'user_Admin'; }
                 }
                 if (count($liste_colonnes_a_indexer) > 0) {
                     if (false === $mf_liste_requete_index = self::$cache_db->read('user__index')) {
@@ -728,9 +750,9 @@ class user_monframework extends entite_monframework
 
                 if (count($liste_colonnes_a_selectionner) == 0) {
                     if ($toutes_colonnes) {
-                        $colonnes = 'Code_user, user_Login, user_Password, user_Email';
+                        $colonnes = 'Code_user, user_Login, user_Password, user_Email, user_Admin';
                     } else {
-                        $colonnes = 'Code_user, user_Login, user_Password, user_Email';
+                        $colonnes = 'Code_user, user_Login, user_Password, user_Email, user_Admin';
                     }
                 } else {
                     $liste_colonnes_a_selectionner[] = 'Code_user';
@@ -883,11 +905,13 @@ class user_monframework extends entite_monframework
                         if ( strpos($argument_cond, 'user_Login')!==false ) { $liste_colonnes_a_indexer['user_Login'] = 'user_Login'; }
                         if ( strpos($argument_cond, 'user_Password')!==false ) { $liste_colonnes_a_indexer['user_Password'] = 'user_Password'; }
                         if ( strpos($argument_cond, 'user_Email')!==false ) { $liste_colonnes_a_indexer['user_Email'] = 'user_Email'; }
+                        if ( strpos($argument_cond, 'user_Admin')!==false ) { $liste_colonnes_a_indexer['user_Admin'] = 'user_Admin'; }
                     }
                     if (isset($options['tris'])) {
                         if ( isset($options['tris']['user_Login']) ) { $liste_colonnes_a_indexer['user_Login'] = 'user_Login'; }
                         if ( isset($options['tris']['user_Password']) ) { $liste_colonnes_a_indexer['user_Password'] = 'user_Password'; }
                         if ( isset($options['tris']['user_Email']) ) { $liste_colonnes_a_indexer['user_Email'] = 'user_Email'; }
+                        if ( isset($options['tris']['user_Admin']) ) { $liste_colonnes_a_indexer['user_Admin'] = 'user_Admin'; }
                     }
                     if (count($liste_colonnes_a_indexer) > 0) {
                         if (false === $mf_liste_requete_index = self::$cache_db->read('user__index')) {
@@ -912,9 +936,9 @@ class user_monframework extends entite_monframework
 
                     if (count($liste_colonnes_a_selectionner) == 0) {
                         if ($toutes_colonnes) {
-                            $colonnes = 'Code_user, user_Login, user_Password, user_Email';
+                            $colonnes = 'Code_user, user_Login, user_Password, user_Email, user_Admin';
                         } else {
-                            $colonnes = 'Code_user, user_Login, user_Password, user_Email';
+                            $colonnes = 'Code_user, user_Login, user_Password, user_Email, user_Admin';
                         }
                     } else {
                         $liste_colonnes_a_selectionner[] = 'Code_user';
@@ -1020,9 +1044,9 @@ class user_monframework extends entite_monframework
                 $nouvelle_lecture = false;
                 if (false === $retour = self::$cache_db->read($cle)) {
                     if ($toutes_colonnes) {
-                        $colonnes='Code_user, user_Login, user_Password, user_Email';
+                        $colonnes='Code_user, user_Login, user_Password, user_Email, user_Admin';
                     } else {
-                        $colonnes='Code_user, user_Login, user_Password, user_Email';
+                        $colonnes='Code_user, user_Login, user_Password, user_Email, user_Admin';
                     }
                     $res_requete = executer_requete_mysql("SELECT $colonnes FROM " . inst('user') . ' WHERE Code_user = ' . $Code_user . ';', false);
                     if ($row_requete = mysqli_fetch_array($res_requete, MYSQLI_ASSOC)) {
@@ -1111,9 +1135,9 @@ class user_monframework extends entite_monframework
 
         if (false === $retour = self::$cache_db->read($cle)) {
             if ($toutes_colonnes) {
-                $colonnes='Code_user, user_Login, user_Password, user_Email';
+                $colonnes='Code_user, user_Login, user_Password, user_Email, user_Admin';
             } else {
-                $colonnes='Code_user, user_Login, user_Password, user_Email';
+                $colonnes='Code_user, user_Login, user_Password, user_Email, user_Admin';
             }
             $res_requete = executer_requete_mysql('SELECT ' . $colonnes . ' FROM ' . inst('user') . ' WHERE Code_user = ' . $Code_user . ';', false);
             if ($row_requete = mysqli_fetch_array($res_requete, MYSQLI_ASSOC)) {
@@ -1174,9 +1198,9 @@ class user_monframework extends entite_monframework
 
         if (false === $retour = self::$cache_db->read($cle)) {
             if ($toutes_colonnes) {
-                $colonnes='Code_user, user_Login, user_Password, user_Email';
+                $colonnes='Code_user, user_Login, user_Password, user_Email, user_Admin';
             } else {
-                $colonnes='Code_user, user_Login, user_Password, user_Email';
+                $colonnes='Code_user, user_Login, user_Password, user_Email, user_Admin';
             }
             $res_requete = executer_requete_mysql('SELECT ' . $colonnes . ' FROM ' . inst('user') . ' WHERE Code_user = ' . $Code_user . ';', false);
             if ($row_requete = mysqli_fetch_array($res_requete, MYSQLI_ASSOC)) {
@@ -1236,6 +1260,7 @@ class user_monframework extends entite_monframework
                 if ( strpos($argument_cond, 'user_Login')!==false ) { $liste_colonnes_a_indexer['user_Login'] = 'user_Login'; }
                 if ( strpos($argument_cond, 'user_Password')!==false ) { $liste_colonnes_a_indexer['user_Password'] = 'user_Password'; }
                 if ( strpos($argument_cond, 'user_Email')!==false ) { $liste_colonnes_a_indexer['user_Email'] = 'user_Email'; }
+                if ( strpos($argument_cond, 'user_Admin')!==false ) { $liste_colonnes_a_indexer['user_Admin'] = 'user_Admin'; }
             }
             if (count($liste_colonnes_a_indexer) > 0) {
                 if (false === $mf_liste_requete_index = self::$cache_db->read('user__index')) {
@@ -1308,12 +1333,18 @@ class user_monframework extends entite_monframework
         return $this->rechercher_user_Email($user_Email);
     }
 
+    public function mf_search_user_Admin(bool $user_Admin): int
+    {
+        return $this->rechercher_user_Admin($user_Admin);
+    }
+
     public function mf_search__colonne(string $colonne_db, $recherche): int
     {
         switch ($colonne_db) {
             case 'user_Login': return $this->mf_search_user_Login($recherche); break;
             case 'user_Password': return $this->mf_search_user_Password($recherche); break;
             case 'user_Email': return $this->mf_search_user_Email($recherche); break;
+            case 'user_Admin': return $this->mf_search_user_Admin($recherche); break;
             default: return 0;
         }
     }
@@ -1332,13 +1363,15 @@ class user_monframework extends entite_monframework
         $user_Login = (isset($ligne['user_Login']) ? $ligne['user_Login'] : $mf_initialisation['user_Login']);
         $user_Password = (isset($ligne['user_Password']) ? $ligne['user_Password'] : $mf_initialisation['user_Password']);
         $user_Email = (isset($ligne['user_Email']) ? $ligne['user_Email'] : $mf_initialisation['user_Email']);
+        $user_Admin = (isset($ligne['user_Admin']) ? $ligne['user_Admin'] : $mf_initialisation['user_Admin']);
         // Typage
         $user_Login = (string) $user_Login;
         $user_Password = (string) $user_Password;
         $user_Email = (string) $user_Email;
+        $user_Admin = ($user_Admin == true ? true : false);
         // Fin typage
-        Hook_user::pre_controller($user_Login, $user_Password, $user_Email);
-        $mf_cle_unique = Hook_user::calcul_cle_unique($user_Login, $user_Email);
+        Hook_user::pre_controller($user_Login, $user_Password, $user_Email, $user_Admin);
+        $mf_cle_unique = Hook_user::calcul_cle_unique($user_Login, $user_Email, $user_Admin);
         $res_requete = executer_requete_mysql('SELECT Code_user FROM ' . inst('user') . ' WHERE mf_cle_unique = \'' . $mf_cle_unique . '\'', false);
         if ($row_requete = mysqli_fetch_array($res_requete, MYSQLI_ASSOC)) {
             $r = intval($row_requete['Code_user']);

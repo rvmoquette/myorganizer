@@ -4,6 +4,7 @@ $mf_dictionnaire_db['Code_user'] = ['type' => 'INT', 'entite' => 'user'];
 $mf_dictionnaire_db['user_Login'] = ['type' => 'VARCHAR', 'entite' => 'user'];
 $mf_dictionnaire_db['user_Password'] = ['type' => 'PASSWORD', 'entite' => 'user'];
 $mf_dictionnaire_db['user_Email'] = ['type' => 'VARCHAR', 'entite' => 'user'];
+$mf_dictionnaire_db['user_Admin'] = ['type' => 'BOOL', 'entite' => 'user'];
 $mf_dictionnaire_db['Code_task'] = ['type' => 'INT', 'entite' => 'task'];
 $mf_dictionnaire_db['task_Name'] = ['type' => 'VARCHAR', 'entite' => 'task'];
 $mf_dictionnaire_db['task_Date_creation'] = ['type' => 'DATE', 'entite' => 'task'];

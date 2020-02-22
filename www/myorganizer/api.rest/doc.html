@@ -10,7 +10,7 @@
 <div class="jumbotron jumbotron-fluid">
 <div class="container-fluid">
 <h1 class="display-4">Documentation de l'API du projet myorganizer</h1>
-<p class="lead">Date : 22/02/2020 11:57:42</p>
+<p class="lead">Date : 22/02/2020 12:38:44</p>
 </div>
 </div>
 <div class="container-fluid">
@@ -57,20 +57,20 @@
 <h3 class="text-center">GET</h3>
 <div class="row"><div class="col-sm-3 text-sm-right">Requête n°1 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/user</span></code></div></div></div>
 <div class="row"><div class="col-sm-3 text-sm-right">Requête n°2 : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">GET</span> <span class="requete">/user/ID</span></code></div></div></div>
-<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": [ { "Code_user": "...", "user_Login": "...", "user_Email": "..." } ], "error": { "number": ..., "label": ... }, , "execution_time": ... }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": [ { "Code_user": "...", "user_Login": "...", "user_Email": "...", "user_Admin": "..." } ], "error": { "number": ..., "label": ... }, , "execution_time": ... }</span></code></div></div></div>
 <br>
 <h3 class="text-center">POST</h3>
 <div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/user</span></code></div></div></div>
-<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "user_Login": "...", "user_Password": "...", "user_Email": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "user_Login": "...", "user_Password": "...", "user_Email": "...", "user_Admin": "..." }</span></code></div></div></div>
 <div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": { "id": "...", "callback": ... }, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
 <br>
 <div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">POST</span> <span class="requete">/user</span></code></div></div></div>
-<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">[ { "user_Login": "...", "user_Password": "...", "user_Email": "..." } ]</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">[ { "user_Login": "...", "user_Password": "...", "user_Email": "...", "user_Admin": "..." } ]</span></code></div></div></div>
 <div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": {}, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
 <br>
 <h3 class="text-center">PUT</h3>
 <div class="row"><div class="col-sm-3 text-sm-right">Requête : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="type">PUT</span> <span class="requete">/user/ID</span></code></div></div></div>
-<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "user_Login": "...", "user_Password": "...", "user_Email": "..." }</span></code></div></div></div>
+<div class="row"><div class="col-sm-3 text-sm-right">Corp : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="corp">{ "user_Login": "...", "user_Password": "...", "user_Email": "...", "user_Admin": "..." }</span></code></div></div></div>
 <div class="row"><div class="col-sm-3 text-sm-right">Réponse : </div><div class="col-sm-9"><div class="card card-body bg-light"><code><span class="data">{ "data": { "callback": ... }, "error": { "number": ..., "label": ... }, "execution_time": ... }</span></code></div></div></div>
 <br>
 <h3 class="text-center">DELETE</h3>

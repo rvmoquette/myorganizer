@@ -95,20 +95,22 @@ class Api_myorganizer {
         return $this->get($requete . 'user?mf_token='.$this->mf_token.'&mf_connector_token='.$this->mf_connector_token.'&mf_instance='.$this->mf_instance);
     }
 
-    public function user__add($user_Login, $user_Password, $user_Email) {
+    public function user__add($user_Login, $user_Password, $user_Email, $user_Admin) {
         $data = [
             'user_Login' => $user_Login,
             'user_Password' => $user_Password,
             'user_Email' => $user_Email,
+            'user_Admin' => $user_Admin,
         ];
         return $this->post('user?mf_token='.$this->mf_token.'&mf_connector_token='.$this->mf_connector_token.'&mf_instance='.$this->mf_instance, $data);
     }
 
-    public function user__edit($Code_user, $user_Login, $user_Password, $user_Email) {
+    public function user__edit($Code_user, $user_Login, $user_Password, $user_Email, $user_Admin) {
         $data = [
             'user_Login' => $user_Login,
             'user_Password' => $user_Password,
             'user_Email' => $user_Email,
+            'user_Admin' => $user_Admin,
         ];
         return $this->put('user/'.$Code_user.'?mf_token='.$this->mf_token.'&mf_connector_token='.$this->mf_connector_token.'&mf_instance='.$this->mf_instance, $data);
     }
@@ -125,6 +127,11 @@ class Api_myorganizer {
 
     public function user__edit__user_Email($Code_user, $user_Email) {
         $data = ['user_Email' => $user_Email ];
+        return $this->put('user/'.$Code_user.'?mf_token='.$this->mf_token.'&mf_connector_token='.$this->mf_connector_token.'&mf_instance='.$this->mf_instance, $data);
+    }
+
+    public function user__edit__user_Admin($Code_user, $user_Admin) {
+        $data = ['user_Admin' => $user_Admin ];
         return $this->put('user/'.$Code_user.'?mf_token='.$this->mf_token.'&mf_connector_token='.$this->mf_connector_token.'&mf_instance='.$this->mf_instance, $data);
     }
 

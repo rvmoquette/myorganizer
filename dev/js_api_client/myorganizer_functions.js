@@ -82,6 +82,7 @@ function r__user__get_all(ref) { var ref = (typeof ref !== 'undefined') ? ref : 
     user_Login: …,
     user_Password: …,
     user_Email: …,
+    user_Admin: …,
   }
 */
 var id_promesse__user__post = 0;
@@ -94,6 +95,7 @@ function r__user__post(ref) { var ref = (typeof ref !== 'undefined') ? ref : '';
     user_Login: …,
     user_Password: …,
     user_Email: …,
+    user_Admin: …,
   }
 */
 var id_promesse__user__put = 0;

@@ -5,6 +5,8 @@ $lang_standard['Code_user'] = 'Utilisateur';
 $lang_standard['user_Login'] = 'Identifiant';
 $lang_standard['user_Password'] = 'Mot de passe';
 $lang_standard['user_Email'] = 'Email';
+$lang_standard['user_Admin'] = 'Administrateur';
+$lang_standard['user_Admin_'] = [1 => "Oui", 0 => "Non"];
 
 $lang_standard['bouton_ajouter_user'] = 'Ajouter';
 $lang_standard['bouton_creer_user'] = 'Créer';
@@ -14,6 +16,7 @@ $lang_standard['bouton_modpwd_user'] = 'Modifier le mot de passe';
 $lang_standard['bouton_modifier_user_Login'] = 'Modifier';
 $lang_standard['bouton_modifier_user_Password'] = 'Modifier';
 $lang_standard['bouton_modifier_user_Email'] = 'Modifier';
+$lang_standard['bouton_modifier_user_Admin'] = 'Modifier';
 
 $lang_standard['form_add_user'] = 'Ajouter un nouvel utilisateur';
 $lang_standard['form_edit_user'] = 'Modifier l\'utilisateur';
@@ -29,6 +32,7 @@ $lang_standard['libelle_liste_user'] = 'Utilisateurs';
 $mf_initialisation['user_Login'] = '';
 $mf_initialisation['user_Password'] = '';
 $mf_initialisation['user_Email'] = '';
+$mf_initialisation['user_Admin'] = 0;
 
 // code_erreur
 

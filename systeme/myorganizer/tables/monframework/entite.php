@@ -79,6 +79,24 @@ class entite_monframework extends entite
         return $Code_user;
     }
 
+    protected function rechercher_user_Admin(bool $user_Admin): int
+    {
+        $user_Admin = format_sql('user_Admin', $user_Admin);
+        $requete_sql = 'SELECT Code_user FROM '.inst('user')." WHERE user_Admin = $user_Admin LIMIT 0, 1;";
+        $cache_db = new Mf_Cachedb('user');
+        if (false === $Code_user = $cache_db->read($requete_sql)) {
+            $res_requete = executer_requete_mysql($requete_sql, false);
+            if ($row_requete = mysqli_fetch_array($res_requete, MYSQLI_ASSOC)) {
+                $Code_user = (int) $row_requete['Code_user'];
+            } else {
+                $Code_user = 0;
+            }
+            mysqli_free_result($res_requete);
+            $cache_db->write($requete_sql, $Code_user);
+        }
+        return $Code_user;
+    }
+
     protected function __get_liste_Code_user(?array $options = null /* $options = [ 'cond_mysql' => [] ] */)
     {
         return $this->get_liste_Code_user($options);
@@ -117,6 +135,7 @@ class entite_monframework extends entite
                 if ( strpos($argument_cond, 'user_Login')!==false ) { $liste_colonnes_a_indexer['user_Login'] = 'user_Login'; }
                 if ( strpos($argument_cond, 'user_Password')!==false ) { $liste_colonnes_a_indexer['user_Password'] = 'user_Password'; }
                 if ( strpos($argument_cond, 'user_Email')!==false ) { $liste_colonnes_a_indexer['user_Email'] = 'user_Email'; }
+                if ( strpos($argument_cond, 'user_Admin')!==false ) { $liste_colonnes_a_indexer['user_Admin'] = 'user_Admin'; }
             }
             if (count($liste_colonnes_a_indexer) > 0) {
                 if (false === $mf_liste_requete_index = $cache_db->read('user__index')) {

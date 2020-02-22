@@ -2704,6 +2704,7 @@ define('MF_USER__ID', 'Code_user');
 define('MF_USER_LOGIN', 'user_Login');
 define('MF_USER_PASSWORD', 'user_Password');
 define('MF_USER_EMAIL', 'user_Email');
+define('MF_USER_ADMIN', 'user_Admin');
 
 // TASK
 define('MF_TASK__ID', 'Code_task');

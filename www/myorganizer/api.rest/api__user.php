@@ -392,6 +392,7 @@ function options($id, $options)
     $authorization['PUT:user_Login'] = $mf_droits_defaut['api_modifier__user_Login'];
     $authorization['PUT:user_Password'] = $mf_droits_defaut['api_modifier__user_Password'];
     $authorization['PUT:user_Email'] = $mf_droits_defaut['api_modifier__user_Email'];
+    $authorization['PUT:user_Admin'] = $mf_droits_defaut['api_modifier__user_Admin'];
     $authorization['DELETE'] = $mf_droits_defaut['user__SUPPRIMER'];
     return ['code_erreur' => 0, 'authorization' => $authorization];
 }
