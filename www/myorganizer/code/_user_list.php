@@ -14,6 +14,7 @@
         $tab->modifier_code_action("apercu_user");
         $tab->ajouter_colonne('user_Login', false, '');
         $tab->ajouter_colonne('user_Email', false, '');
+        $tab->ajouter_colonne('user_Admin', true, '');
         $trans['{tableau_user}'] = (count($liste) < NB_ELEM_MAX_TABLEAU ? '' : get_code_alert_warning("Attention, affichage partielle des données (soit " . NB_ELEM_MAX_TABLEAU . " enregistrements)")) . $tab->generer_code();
 
     // boutons

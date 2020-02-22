@@ -41,6 +41,12 @@
         }
         $trans['{bouton_modifier_user_Email}'] = BOUTON_INTEGRABLE ? $menu_a_droite->generer_code_bouton('bouton_modifier_user_Email') : '';
 
+        // user_Admin
+        if ($mf_droits_defaut['api_modifier__user_Admin']) {
+            $menu_a_droite->ajouter_bouton( BOUTON_LIBELLE_MODIFIER_PREC . get_nom_colonne('bouton_modifier_user_Admin') . BOUTON_LIBELLE_MODIFIER_SUIV, get_nom_page_courante().'?act=modifier_user_Admin&Code_user='.$Code_user, 'lien', 'bouton_modifier_user_Admin');
+        }
+        $trans['{bouton_modifier_user_Admin}'] = BOUTON_INTEGRABLE ? $menu_a_droite->generer_code_bouton('bouton_modifier_user_Admin') : '';
+
     /* prec_et_suiv */
     if ($db->user()->mf_compter() < 100) {
         $liste_user = $db->user()->mf_lister_contexte();
@@ -77,5 +83,12 @@
             $trans['{user_Email}'] = ajouter_champ_modifiable_interface(['liste_valeurs_cle_table' => ['Code_user' => $user['Code_user']], 'DB_name' => 'user_Email', 'valeur_initiale' => $user['user_Email']]);
         } else {
             $trans['{user_Email}'] = get_valeur_html_maj_auto_interface(['liste_valeurs_cle_table' => ['Code_user' => $user['Code_user']], 'DB_name' => 'user_Email', 'valeur_initiale' => $user['user_Email']]);
+        }
+
+    /* user_Admin */
+        if ($mf_droits_defaut['api_modifier__user_Admin']) {
+            $trans['{user_Admin}'] = ajouter_champ_modifiable_interface(['liste_valeurs_cle_table' => ['Code_user' => $user['Code_user']], 'DB_name' => 'user_Admin', 'valeur_initiale' => $user['user_Admin'], 'class' => 'button']);
+        } else {
+            $trans['{user_Admin}'] = get_valeur_html_maj_auto_interface(['liste_valeurs_cle_table' => ['Code_user' => $user['Code_user']], 'DB_name' => 'user_Admin', 'valeur_initiale' => $user['user_Admin']]);
         }
 

@@ -13,7 +13,7 @@ class Hook_user
         // ici le code
     }
 
-    public static function pre_controller(string &$user_Login, string &$user_Password, string &$user_Email, ?int $Code_user = null)
+    public static function pre_controller(string &$user_Login, string &$user_Password, string &$user_Email, bool &$user_Admin, ?int $Code_user = null)
     {
         // ici le code
     }
@@ -29,26 +29,26 @@ class Hook_user
         // ici le code
     }
 
-    public static function autorisation_ajout(string $user_Login, string $user_Password, string $user_Email)
+    public static function autorisation_ajout(string $user_Login, string $user_Password, string $user_Email, bool $user_Admin)
     {
         return true;
     }
 
-    public static function data_controller(string &$user_Login, string &$user_Password, string &$user_Email, ?int $Code_user = null)
+    public static function data_controller(string &$user_Login, string &$user_Password, string &$user_Email, bool &$user_Admin, ?int $Code_user = null)
     {
         // ici le code
     }
 
-    public static function calcul_signature(string $user_Login, string $user_Email): string
+    public static function calcul_signature(string $user_Login, string $user_Email, bool $user_Admin): string
     {
-        return md5("$user_Login-$user_Email");
+        return md5("$user_Login-$user_Email-$user_Admin");
     }
 
-    public static function calcul_cle_unique(string $user_Login, string $user_Email): string
+    public static function calcul_cle_unique(string $user_Login, string $user_Email, bool $user_Admin): string
     {
         // La méthode POST de l'API REST utilise cette fonction pour en déduire l'unicité de la données. Dans le cas contraire, la données est alors mise à jour
         // Attention au risque de collision
-        return sha1("$user_Login-$user_Email");
+        return sha1("$user_Login-$user_Email-$user_Admin");
     }
 
     public static function ajouter(int $Code_user)
@@ -65,11 +65,12 @@ class Hook_user
         $mf_droits_defaut['api_modifier__user_Login'] = false;
         $mf_droits_defaut['api_modifier__user_Password'] = false;
         $mf_droits_defaut['api_modifier__user_Email'] = false;
+        $mf_droits_defaut['api_modifier__user_Admin'] = false;
         // Mise à jour des droits
         // ici le code
     }
 
-    public static function autorisation_modification(int $Code_user, string $user_Login__new, string $user_Password__new, string $user_Email__new)
+    public static function autorisation_modification(int $Code_user, string $user_Login__new, string $user_Password__new, string $user_Email__new, bool $user_Admin__new)
     {
         return true;
     }
@@ -84,11 +85,16 @@ class Hook_user
         // ici le code
     }
 
+    public static function data_controller__user_Admin(bool $old, bool &$new, int $Code_user)
+    {
+        // ici le code
+    }
+
     /*
      * modifier : $Code_user permet de se référer à la données modifiée
      * les autres paramètres booléens ($modif...) permettent d'identifier les champs qui ont été modifiés
      */
-    public static function modifier(int $Code_user, bool $bool__user_Login, bool $bool__user_Password, bool $bool__user_Email)
+    public static function modifier(int $Code_user, bool $bool__user_Login, bool $bool__user_Password, bool $bool__user_Email, bool $bool__user_Admin)
     {
         // ici le code
     }
@@ -132,6 +138,7 @@ class Hook_user
          * $donnees['user_Login']
          * $donnees['user_Password']
          * $donnees['user_Email']
+         * $donnees['user_Admin']
          */
         return true;
     }
@@ -149,6 +156,7 @@ class Hook_user
          * $donnees['user_Login']
          * $donnees['user_Password']
          * $donnees['user_Email']
+         * $donnees['user_Admin']
          */
         // ici le code
     }

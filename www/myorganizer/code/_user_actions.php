@@ -12,6 +12,7 @@
         if ( isset( $_POST['user_Login'] ) ) { $mf_add['user_Login'] = $_POST['user_Login']; }
         if ( isset( $_POST['user_Password'] ) ) { $mf_add['user_Password'] = $_POST['user_Password']; }
         if ( isset( $_POST['user_Email'] ) ) { $mf_add['user_Email'] = $_POST['user_Email']; }
+        if ( isset( $_POST['user_Admin'] ) ) { $mf_add['user_Admin'] = $_POST['user_Admin']; }
         $retour = $table_user->mf_ajouter_2($mf_add);
         if ($retour['code_erreur'] == 0) {
             $mf_action = "apercu_user";
@@ -33,6 +34,7 @@
         if (isset($_POST['user_Login'])) { $mf_update['user_Login'] = $_POST['user_Login']; }
         // if (isset($_POST['user_Password'])) { $mf_update['user_Password'] = $_POST['user_Password']; }
         if (isset($_POST['user_Email'])) { $mf_update['user_Email'] = $_POST['user_Email']; }
+        if (isset($_POST['user_Admin'])) { $mf_update['user_Admin'] = $_POST['user_Admin']; }
         $retour = $table_user->mf_modifier_2( [ $Code_user => $mf_update ] );
         if ($retour['code_erreur'] == 0) {
             $mf_action = 'apercu_user';
@@ -56,6 +58,17 @@
     if ($mf_action == 'modifier_user_Email' && isset($_POST['validation_formulaire']) && formulaire_valide($_POST['validation_formulaire'])) {
         $user_Email = $_POST['user_Email'];
         $retour = $table_user->mf_modifier_2([$Code_user => ['user_Email' => $user_Email]]);
+        if ($retour['code_erreur'] == 0) {
+            $mf_action = 'apercu_user';
+            $cache->clear();
+        } else {
+            $cache->clear_current_page();
+        }
+    }
+
+    if ($mf_action == 'modifier_user_Admin' && isset($_POST['validation_formulaire']) && formulaire_valide($_POST['validation_formulaire'])) {
+        $user_Admin = $_POST['user_Admin'];
+        $retour = $table_user->mf_modifier_2([$Code_user => ['user_Admin' => $user_Admin]]);
         if ($retour['code_erreur'] == 0) {
             $mf_action = 'apercu_user';
             $cache->clear();

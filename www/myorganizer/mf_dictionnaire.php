@@ -66,7 +66,7 @@ function mf_documentation_matrice_workflow(string $colonne)
 <div class="jumbotron jumbotron-fluid">
 <div class="container-fluid">
 <h1 class="display-4">Dictionnaire des données du projet myorganizer</h1>
-<p class="lead">Date : 22/02/2020 12:38:44</p>
+<p class="lead">Date : 22/02/2020 12:40:11</p>
 </div>
 </div>
 <div class="container-fluid">

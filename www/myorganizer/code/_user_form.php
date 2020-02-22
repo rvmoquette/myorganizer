@@ -45,6 +45,7 @@
         $form->ajouter_input("user_Login", ( isset($_POST['user_Login']) ? $_POST['user_Login'] : $mf_initialisation['user_Login'] ), true);
         $form->ajouter_input("user_Password", ( isset($_POST['user_Password']) ? $_POST['user_Password'] : $mf_initialisation['user_Password'] ), true, 'password');
         $form->ajouter_input("user_Email", ( isset($_POST['user_Email']) ? $_POST['user_Email'] : $mf_initialisation['user_Email'] ), true);
+        $form->ajouter_select(lister_cles($lang_standard['user_Admin_']), "user_Admin", ( isset($_POST['user_Admin']) ? $_POST['user_Admin'] : $mf_initialisation['user_Admin'] ), true);
 
         $code_html .= recuperer_gabarit('user/form_add_user.html', ['{form}' => $form->generer_code(), '{title}' => get_nom_colonne('form_add_user')], false, true);
 
@@ -57,6 +58,7 @@
             $form->ajouter_input("user_Login", ( isset($_POST['user_Login']) ? $_POST['user_Login'] : $user['user_Login'] ), true);
             // $form->ajouter_input("user_Password", "", true);
             $form->ajouter_input("user_Email", ( isset($_POST['user_Email']) ? $_POST['user_Email'] : $user['user_Email'] ), true);
+            $form->ajouter_select(lister_cles($lang_standard['user_Admin_']), "user_Admin", ( isset($_POST['user_Admin']) ? $_POST['user_Admin'] : $user['user_Admin'] ), true);
 
             $code_html .= recuperer_gabarit('user/form_edit_user.html', ['{form}' => $form->generer_code(), '{title}' => get_nom_colonne('form_edit_user')], false, true);
 
@@ -98,6 +100,19 @@
             $form->ajouter_input("user_Email", ( isset($_POST['user_Email']) ? $_POST['user_Email'] : $user['user_Email'] ), true);
 
             $code_html .= recuperer_gabarit('user/form_edit_user_Email.html', ['{form}' => $form->generer_code(), '{title}' => get_nom_colonne('form_edit_user_Email')], false, true);
+
+        }
+
+    }
+    elseif ($mf_action == 'modifier_user_Admin') {
+
+        $user = $table_user->mf_get(mf_Code_user(), ['autocompletion' => true]);
+        if (isset($user['Code_user'])) {
+
+            $form = new Formulaire('', $mess);
+            $form->ajouter_select(lister_cles($lang_standard['user_Admin_']), "user_Admin", ( isset($_POST['user_Admin']) ? $_POST['user_Admin'] : $user['user_Admin'] ), true);
+
+            $code_html .= recuperer_gabarit('user/form_edit_user_Admin.html', ['{form}' => $form->generer_code(), '{title}' => get_nom_colonne('form_edit_user_Admin')], false, true);
 
         }
 
