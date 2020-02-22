@@ -78,6 +78,14 @@ class Hook_task
         $mf_droits_defaut['api_modifier_ref__task__Code_user'] = false;
         // Mise à jour des droits
         // ici le code
+        $db = new DB();
+        $task = $db -> task() -> mf_get($Code_task);
+        if ($task[MF_TASK_CODE_USER] == get_user_courant(MF_USER__ID) || is_admin()) {
+            if ($task[MF_TASK_WORKFLOW] == TASK_WORKFLOW_CREE) {
+                $mf_droits_defaut['api_modifier__task_Description'] = true;
+                $mf_droits_defaut['api_modifier__task_Name'] = true;
+            }
+        }
     }
 
     public static function autorisation_modification(int $Code_task, string $task_Name__new, string $task_Date_creation__new, string $task_Description__new, ?int $task_Workflow__new, int $Code_user__new)
@@ -139,6 +147,11 @@ class Hook_task
         $mf_droits_defaut['task__SUPPRIMER'] = false;
         // Mise à jour des droits
         // Ici le code
+        $db = new DB();
+        $task = $db -> task() -> mf_get($Code_task);
+        if ($task[MF_TASK_CODE_USER]==get_user_courant(MF_USER__ID) && $task[MF_TASK_WORKFLOW]==TASK_WORKFLOW_CREE || is_admin()) {
+            $mf_droits_defaut['task__SUPPRIMER'] = true;
+        }
     }
 
     public static function autorisation_suppression(int $Code_task)
