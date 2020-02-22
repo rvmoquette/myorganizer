@@ -85,6 +85,7 @@ class Hook_task
                 $mf_droits_defaut['api_modifier__task_Description'] = true;
                 $mf_droits_defaut['api_modifier__task_Name'] = true;
             }
+            $mf_droits_defaut['api_modifier__task_Workflow'] = true;
         }
     }
 
