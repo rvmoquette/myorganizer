@@ -1,32 +1,25 @@
 <?php declare(strict_types=1);
 $pages_menu = [];
 
-$categorie_menu = '<span class="fa fa-cogs"></span> Mon menu';
+$categorie_menu = '<span class="fa fa-cogs"></span> Tâches';
 
 $pages_menu[$categorie_menu][] = [
-    'nom' => 'user',
+    'nom' => 'Tâches',
+    'icone' => '<span class="fa fa-cogs"></span>',
+    'adresse' => 'task.php'
+];
+
+$categorie_menu = '<span class="fa fa-cogs"></span> Paramètres';
+
+$pages_menu[$categorie_menu][] = [
+    'nom' => 'Utilisateurs',
     'icone' => '<span class="fa fa-cogs"></span>',
     'adresse' => 'user.php'
 ];
 $pages_menu[$categorie_menu][] = [
-    'nom' => 'task',
-    'icone' => '<span class="fa fa-cogs"></span>',
-    'adresse' => 'task.php'
-];
-$pages_menu[$categorie_menu][] = [
-    'nom' => 'label',
+    'nom' => 'Classements',
     'icone' => '<span class="fa fa-cogs"></span>',
     'adresse' => 'label.php'
-];
-$pages_menu[$categorie_menu][] = [
-    'nom' => 'a_task_label',
-    'icone' => '<span class="fa fa-cogs"></span>',
-    'adresse' => 'a_task_label.php'
-];
-$pages_menu[$categorie_menu][] = [
-    'nom' => 'a_user_task',
-    'icone' => '<span class="fa fa-cogs"></span>',
-    'adresse' => 'a_user_task.php'
 ];
 
 unset($categorie_menu);
