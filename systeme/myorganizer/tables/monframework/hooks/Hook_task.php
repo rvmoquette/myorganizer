@@ -68,6 +68,9 @@ class Hook_task
         $db -> a_user_task() -> mfi_ajouter_auto([
             'Code_task' => $Code_task
         ]);
+        $db -> a_task_label() -> mfi_ajouter_auto([
+            'Code_task' => $Code_task
+        ]);
     }
 
     public static function hook_actualiser_les_droits_modifier(?int $Code_task = null)

@@ -11,6 +11,8 @@
         $liste = $db->a_task_label()->mf_lister_contexte([OPTION_LIMIT => [0, NB_ELEM_MAX_TABLEAU]]);
         $tab = new Tableau($liste, '');
         $tab->desactiver_pagination();
+        /* start */
+        $tab->ajouter_colonne_modifiable_sans_maj_auto('a_task_label_Link', true, '');
         if (! isset($est_charge['task'])) {
             $tab->ajouter_colonne('Code_task', true, '');
         }
@@ -19,11 +21,11 @@
             $tab->ajouter_colonne('Code_label', true, '');
         }
         $tab->ajouter_ref_Colonne_Code('Code_label');
-        $tab->modifier_code_action('apercu_a_task_label');
-        $tab->ajouter_colonne('a_task_label_Link', true, '');
+//        $tab->modifier_code_action('apercu_a_task_label');
         if ($mf_droits_defaut['a_task_label__SUPPRIMER']) {
             $tab->ajouter_colonne_bouton('supprimer_a_task_label', BOUTON_LIBELLE_SUPPRIMER_PREC . get_nom_colonne('bouton_supprimer_a_task_label') . BOUTON_LIBELLE_SUPPRIMER_SUIV );
         }
+        /* end */
         $trans['{tableau_a_task_label}'] = (count($liste) < NB_ELEM_MAX_TABLEAU ? '' : get_code_alert_warning("Attention, affichage partielle des données (soit " . NB_ELEM_MAX_TABLEAU . " enregistrements)")) . $tab->generer_code();
 
     // boutons

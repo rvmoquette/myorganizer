@@ -25,7 +25,8 @@
 
     }
     else {
-
+        /* start */
+        /*
         include __DIR__ . '/_a_task_label_list.php';
 
         $code_html .= recuperer_gabarit('main/section.html', [
@@ -34,7 +35,8 @@
             '{titre}'     => htmlspecialchars(get_nom_colonne('libelle_liste_a_task_label')),
             '{contenu}'   => recuperer_gabarit('a_task_label/bloc_lister.html', $trans),
         ]);
-
+        */
+        /* end */
     }
 
     if ($mf_action == "ajouter_a_task_label") {

@@ -66,7 +66,7 @@ function mf_documentation_matrice_workflow(string $colonne)
 <div class="jumbotron jumbotron-fluid">
 <div class="container-fluid">
 <h1 class="display-4">Dictionnaire des données du projet myorganizer</h1>
-<p class="lead">Date : 22/02/2020 12:40:11</p>
+<p class="lead">Date : 22/02/2020 16:33:19</p>
 </div>
 </div>
 <div class="container-fluid">
@@ -144,7 +144,7 @@ function mf_documentation_matrice_workflow(string $colonne)
 <tbody>
 <tr scope="row" class="bg-warning" style="font-style: italic;"><th style="width: 25%;">Lien vers l'entité : TASK</th><th style="width: 40%;">Référence</th><th style="width: 10%;"></th><th style="width: 25%;"><small>Code_task</small></th></tr>
 <tr scope="row" class="bg-warning" style="font-style: italic;"><th style="width: 25%;">Lien vers l'entité : LABEL</th><th style="width: 40%;">Référence</th><th style="width: 10%;"></th><th style="width: 25%;"><small>Code_label</small></th></tr>
-<tr scope="row"><td>a_task_label_Link</td><td>Booléen (oui/non)<br><span style="font-size: 0.85em; font-style: italic;">[1 => "Oui", 0 => "Non"]</span></td><td>0</td><td><small>a_task_label_Link</small></td></tr>
+<tr scope="row"><td> </td><td>Booléen (oui/non)<br><span style="font-size: 0.85em; font-style: italic;">[1 => "Oui", 0 => "Non"]</span></td><td>0</td><td><small>a_task_label_Link</small></td></tr>
 </tbody>
 </table>
 <hr>
@@ -164,7 +164,7 @@ function mf_documentation_matrice_workflow(string $colonne)
 <tbody>
 <tr scope="row" class="bg-warning" style="font-style: italic;"><th style="width: 25%;">Lien vers l'entité : USER</th><th style="width: 40%;">Référence</th><th style="width: 10%;"></th><th style="width: 25%;"><small>Code_user</small></th></tr>
 <tr scope="row" class="bg-warning" style="font-style: italic;"><th style="width: 25%;">Lien vers l'entité : TASK</th><th style="width: 40%;">Référence</th><th style="width: 10%;"></th><th style="width: 25%;"><small>Code_task</small></th></tr>
-<tr scope="row"><td>a_user_task_Link</td><td>Booléen (oui/non)<br><span style="font-size: 0.85em; font-style: italic;">[1 => "Oui", 0 => "Non"]</span></td><td>0</td><td><small>a_user_task_Link</small></td></tr>
+<tr scope="row"><td> </td><td>Booléen (oui/non)<br><span style="font-size: 0.85em; font-style: italic;">[1 => "Oui", 0 => "Non"]</span></td><td>0</td><td><small>a_user_task_Link</small></td></tr>
 </tbody>
 </table>
 <hr>

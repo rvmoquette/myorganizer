@@ -2,7 +2,7 @@
 
 $lang_standard['a_task_label'] = 'a_task_label';
 
-$lang_standard['a_task_label_Link'] = 'a_task_label_Link';
+$lang_standard['a_task_label_Link'] = ' ';
 $lang_standard['a_task_label_Link_'] = [1 => "Oui", 0 => "Non"];
 
 $lang_standard['bouton_ajouter_a_task_label'] = 'Ajouter';

@@ -7,12 +7,14 @@ if (! $cache->start()) {
     /* Chargement des tables */
         $table_task = new task();
     $table_a_user_task = new a_user_task();
+    $table_a_task_label = new a_task_label();
 
     require __DIR__ . '/scripts/lecture_parametres.php';
 
     /* Chargement des actions */
         include __DIR__ . '/code/_task_actions.php';
     include __DIR__ . '/code/_a_user_task_actions.php';
+    include __DIR__ . '/code/_a_task_label_actions.php';
 
     require __DIR__ . '/scripts/genealogie.php';
 
@@ -27,6 +29,7 @@ if (! $cache->start()) {
         include __DIR__ . '/code/_task_form.php';
         if (mf_Code_task()) {
             include __DIR__ . '/code/_a_user_task_form.php';
+            include __DIR__ . '/code/_a_task_label_form.php';
         }
 
     $menu_a_droite->ajouter_bouton_deconnexion();

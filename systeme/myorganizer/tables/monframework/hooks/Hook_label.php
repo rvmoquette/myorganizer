@@ -57,6 +57,10 @@ class Hook_label
     public static function ajouter(int $Code_label)
     {
         // ici le code
+        $db = new DB();
+        $db -> a_task_label() -> mfi_ajouter_auto([
+            'Code_label' => $Code_label
+        ]);
     }
 
     public static function hook_actualiser_les_droits_modifier(?int $Code_label = null)
