@@ -27,6 +27,9 @@ class Hook_label
         $mf_droits_defaut['label__CREER'] = false;
         // Mise à jour des droits
         // ici le code
+        if (is_admin()) {
+            $mf_droits_defaut['label__AJOUTER'] = true;
+        }
     }
 
     public static function autorisation_ajout(string $label_Name)
@@ -64,6 +67,9 @@ class Hook_label
         $mf_droits_defaut['api_modifier__label_Name'] = false;
         // Mise à jour des droits
         // ici le code
+        if (is_admin()) {
+            $mf_droits_defaut['api_modifier__label_Name'] = true;
+        }
     }
 
     public static function autorisation_modification(int $Code_label, string $label_Name__new)
@@ -92,6 +98,9 @@ class Hook_label
         $mf_droits_defaut['label__SUPPRIMER'] = false;
         // Mise à jour des droits
         // Ici le code
+        if (is_admin()) {
+            $mf_droits_defaut['label__SUPPRIMER'] = true;
+        }
     }
 
     public static function autorisation_suppression(int $Code_label)
